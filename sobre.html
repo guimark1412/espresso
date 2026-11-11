@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Nossa Casa & Grãos da Semana — Espresso Manaus</title>
+  <meta name="description" content="Conheça nosso casarão de 1924 restaurado em Manaus, nosso jardim interno climatizado e os grãos torrados toda segunda-feira.">
+  <meta name="theme-color" content="#1c130e">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Nossa Casa & Grãos da Semana — Espresso Manaus">
+  <meta property="og:description" content="Um casarão de 1924 restaurado para tomar café sem pressa. Torrefação própria em Manaus.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=85">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-espresso-dark: #1c130e;
+      --bg-ground: #F9F6F0;
+      --bg-surface: #F3ECE2;
+      --ink-primary: #231815;
+      --ink-secondary: #6E584E;
+      --ink-muted: #9E897F;
+      --accent-caramel: #B86B35;
+      --accent-hover: #9C5625;
+      --border-hairline: rgba(35, 24, 21, 0.12);
+      --border-light-on-dark: rgba(255, 255, 255, 0.14);
+      --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --header-h: 72px;
+      --radius-sm: 8px;
+      --radius-pill: 9999px;
+      --transition-smooth: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a, button, [role="tab"], [role="button"], .btn {
+      -webkit-tap-highlight-color: transparent;
+      outline: none;
+    }
+
+    a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
+      outline: 2px solid var(--accent-caramel);
+      outline-offset: 2px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--header-h);
+      background-color: var(--bg-ground);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-ground);
+      color: var(--ink-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(24, 16, 12, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.55);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--header-h);
+      gap: 1.5rem;
+    }
+
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 0.95rem;
+      color: #fdfbf7;
+    }
+
+    .brand-logo-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 1.1rem;
+      border-left: 1px solid rgba(255, 255, 255, 0.14);
+      white-space: nowrap;
+    }
+
+    .brand-tagline {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+      color: #fdfbf7;
+      line-height: 1.1;
+    }
+
+    .brand-sub {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #e08a47;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #d6cfc7;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition-smooth);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #e08a47;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      min-height: 44px;
+      border-radius: var(--radius-pill);
+      transition: var(--transition-smooth);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(180deg, #d87c37 0%, #b86b35 100%);
+      color: #fdfbf7;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      box-shadow: 0 8px 24px -4px rgba(184, 107, 53, 0.45);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(180deg, #e08a47 0%, #c47238 100%);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fdfbf7;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.16);
+      transform: translateY(-2px);
+    }
+
+    .page-hero {
+      background-color: var(--bg-espresso-dark);
+      color: #fdfbf7;
+      padding: clamp(3.5rem, 8vh, 6rem) 0 3.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 75% 30%, rgba(224, 138, 71, 0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .meta-kicker {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #e08a47;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      color: #fdfbf7;
+      max-width: 22ch;
+    }
+
+    .page-hero p {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: rgba(220, 215, 208, 0.85);
+      max-width: 62ch;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    /* Seção Salão / Espaço */
+    .space-section {
+      padding: clamp(4rem, 7vw, 6rem) 0;
+      background-color: var(--bg-ground);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .space-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(2.5rem, 5vw, 4.5rem);
+      align-items: center;
+    }
+
+    .space-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      color: var(--ink-primary);
+    }
+
+    .space-lead {
+      font-size: 1rem;
+      color: var(--ink-secondary);
+      line-height: 1.68;
+      margin-bottom: 2rem;
+    }
+
+    .space-triggers-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .space-trigger-card {
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 18px;
+      padding: 1.05rem 1.25rem;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: var(--transition-smooth);
+      width: 100%;
+      font-family: inherit;
+    }
+
+    .space-trigger-card:hover {
+      background-color: rgba(235, 227, 216, 0.45);
+      transform: translateX(4px);
+    }
+
+    .space-trigger-card.active {
+      background-color: rgba(255, 255, 255, 0.85);
+      border-color: rgba(184, 107, 53, 0.22);
+      border-left: 3px solid var(--accent-caramel);
+      box-shadow: 0 8px 24px -6px rgba(35, 24, 21, 0.08);
+      transform: translateX(6px);
+    }
+
+    .trigger-index-wrap {
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .trigger-num {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--ink-muted);
+    }
+
+    .space-trigger-card.active .trigger-num {
+      color: var(--accent-caramel);
+    }
+
+    .trigger-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .trigger-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .trigger-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--ink-primary);
+    }
+
+    .space-trigger-card.active .trigger-title {
+      color: #9C5625;
+      font-weight: 600;
+    }
+
+    .trigger-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: transparent;
+      transition: all 0.25s ease;
+    }
+
+    .space-trigger-card.active .trigger-indicator {
+      background-color: var(--accent-caramel);
+      box-shadow: 0 0 8px var(--accent-caramel);
+    }
+
+    .trigger-desc {
+      font-size: 0.88rem;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    .mobile-inline-photo {
+      display: none;
+    }
+
+    .space-showcase-frame {
+      min-height: 520px;
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-hairline);
+      box-shadow: 0 20px 48px -12px rgba(35, 24, 21, 0.14);
+      background-color: #231815;
+    }
+
+    .space-photo-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.03);
+      transition: opacity 0.5s ease, transform 0.8s var(--ease-out-expo), visibility 0.5s;
+    }
+
+    .space-photo-slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+
+    .space-slide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .space-slide-overlay {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.25rem;
+      right: 1.25rem;
+      display: flex;
+    }
+
+    .space-caption-badge {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(24, 16, 12, 0.34) 100%);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.32), inset 0 1px 1.5px rgba(255, 255, 255, 0.55);
+      color: #fdfbf7;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.48);
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .caption-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #E29A62;
+      box-shadow: 0 0 8px #E29A62;
+    }
+
+    .space-progress-dots {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      display: flex;
+      gap: 6px;
+      background: rgba(28, 19, 14, 0.55);
+      backdrop-filter: blur(10px);
+      padding: 5px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .space-progress-dots .progress-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .space-progress-dots .progress-dot.active {
+      background-color: #E29A62;
+      width: 16px;
+      border-radius: 4px;
+    }
+
+    /* Caderno do Barista */
+    .notebook-section {
+      background-color: var(--bg-espresso-dark);
+      color: var(--bg-ground);
+      padding: clamp(3.5rem, 6vw, 5rem) 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .notebook-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.25rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-light-on-dark);
+      margin-bottom: 2.5rem;
+    }
+
+    .notebook-header h2 {
+      color: var(--bg-ground);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-family: var(--font-display);
+    }
+
+    .notebook-header p {
+      color: rgba(250, 246, 240, 0.72);
+      font-size: 0.95rem;
+      max-width: 50ch;
+    }
+
+    .notebook-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(1.25rem, 2.5vw, 2.25rem);
+    }
+
+    .metric-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-right: 1.5rem;
+      border-right: 1px solid var(--border-light-on-dark);
+    }
+
+    .metric-block:last-child {
+      border-right: none;
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(250, 246, 240, 0.78);
+      font-weight: 600;
+    }
+
+    .metric-val {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 2.8vw, 2.25rem);
+      color: var(--bg-ground);
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    .metric-sub {
+      font-size: 0.85rem;
+      color: var(--accent-caramel);
+      font-weight: 500;
+    }
+
+    /* Rodapé Cards */
+    .site-footer {
+      background-color: var(--bg-ground);
+      padding: clamp(3rem, 5vw, 4.5rem) 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr 1fr;
+      gap: clamp(1.25rem, 2vw, 2rem);
+      padding-bottom: clamp(2rem, 3.5vw, 2.75rem);
+      border-bottom: 1px solid rgba(35, 24, 21, 0.10);
+    }
+
+    .footer-brand, .footer-col {
+      padding: clamp(1.5rem, 2.5vw, 2rem);
+      background: #FDFBF7;
+      border-radius: 24px;
+      border: 1px solid rgba(35, 24, 21, 0.08);
+      box-shadow: 0 12px 30px -8px rgba(35, 24, 21, 0.06);
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.15rem;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      color: var(--ink-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hours-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .hours-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px dashed rgba(35, 24, 21, 0.12);
+    }
+
+    .hours-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .address-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .footer-bottom {
+      padding-top: 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+    }
+
+    /* Mobile */
+    .mobile-nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-sm);
+      color: #fdfbf7;
+      cursor: pointer;
+    }
+
+    .hamburger-box {
+      width: 22px;
+      height: 16px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      width: 22px;
+      height: 2px;
+      background-color: #fdfbf7;
+      border-radius: 2px;
+      position: absolute;
+      transition: transform 0.28s var(--ease-out-expo), opacity 0.2s ease, top 0.28s ease, background-color 0.28s ease;
+    }
+
+    .hamburger-inner {
+      top: 7px;
+      left: 0;
+    }
+
+    .hamburger-inner::before {
+      content: "";
+      top: -6px;
+      left: 0;
+    }
+
+    .hamburger-inner::after {
+      content: "";
+      top: 6px;
+      left: 0;
+    }
+
+    .mobile-nav-toggle.is-open .hamburger-inner {
+      background-color: transparent;
+    }
+
+    .mobile-nav-toggle.is-open .hamburger-inner::before {
+      top: 0;
+      transform: rotate(45deg);
+      background-color: #e08a47;
+    }
+
+    .mobile-nav-toggle.is-open .hamburger-inner::after {
+      top: 0;
+      transform: rotate(-45deg);
+      background-color: #e08a47;
+    }
+
+    .mobile-nav-drawer {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(20, 13, 10, 0.98);
+      backdrop-filter: blur(28px);
+      padding: 1.25rem 0 1.75rem;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: var(--transition-smooth);
+      pointer-events: none;
+      z-index: 99;
+    }
+
+    .mobile-nav-drawer.is-open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .mobile-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .mobile-nav-item {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0.75rem 1.15rem;
+      color: #fdfbf7;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 500;
+      border-radius: 12px;
+    }
+
+    .mobile-nav-item.active {
+      color: #e08a47;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Tablet (769px–1024px): evita colunas espremidas */
+    @media (max-width: 1024px) {
+      .nav-links {
+        gap: 1.1rem;
+      }
+
+      .nav-links a {
+        white-space: nowrap;
+      }
+
+      .header-cta-desktop {
+        display: none;
+      }
+
+      .space-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .space-showcase-frame {
+        min-height: 0;
+        aspect-ratio: 16 / 10;
+        max-height: 460px;
+      }
+
+      .notebook-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .metric-block:nth-child(2n) {
+        border-right: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.25rem;
+      }
+
+      .desktop-nav, .header-cta-desktop {
+        display: none !important;
+      }
+
+      .mobile-nav-toggle {
+        display: inline-flex;
+      }
+
+      .mobile-nav-drawer {
+        display: block;
+      }
+
+      .space-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.5rem;
+      }
+
+      .space-narrative-col {
+        min-width: 0;
+      }
+
+      .header-inner {
+        gap: 0.75rem;
+      }
+
+      .brand-logo-wrap {
+        gap: 0.7rem;
+        min-width: 0;
+      }
+
+      .brand-meta {
+        padding-left: 0.8rem;
+      }
+
+      .mobile-nav-toggle {
+        flex-shrink: 0;
+      }
+
+      .space-showcase-col {
+        display: none !important;
+      }
+
+      .space-trigger-card {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 1.15rem;
+        background: #FDFBF7;
+        border: 1px solid rgba(35, 24, 21, 0.08);
+        border-radius: 20px;
+      }
+
+      .space-trigger-card.active {
+        background: #FFFFFF;
+        border-color: rgba(184, 107, 53, 0.28);
+        border-left: 4px solid var(--accent-caramel);
+      }
+
+      .mobile-inline-photo {
+        display: none;
+        flex: 0 0 100%;
+        width: 100%;
+        margin-top: 0.35rem;
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+        aspect-ratio: 4 / 3;
+        background-color: #231815;
+      }
+
+      .space-trigger-card.active .mobile-inline-photo {
+        display: block;
+      }
+
+      .mobile-inline-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .mobile-inline-caption {
+        position: absolute;
+        bottom: 0.7rem;
+        left: 0.7rem;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(24, 16, 12, 0.34) 100%);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.34);
+        color: #fdfbf7;
+        padding: 0.38rem 0.82rem;
+        border-radius: var(--radius-pill);
+        font-size: 0.72rem;
+      }
+
+      .notebook-metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .metric-block {
+        border-right: none;
+        border-bottom: 1px solid var(--border-light-on-dark);
+        padding-bottom: 1.25rem;
+      }
+
+      .metric-block:last-child {
+        border-bottom: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .page-hero .hero-links .btn {
+        flex: 1 1 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .space-photo-slide,
+      .space-trigger-card,
+      .btn,
+      .mobile-nav-drawer {
+        transition: none !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo-wrap" title="Voltar à Página Principal">
+        <img src="assets/logo.png" alt="Logo Espresso" class="brand-logo-img">
+        <div class="brand-meta">
+          <span class="brand-tagline">Casa de Café & Forno</span>
+          <span class="brand-sub">Torra Artesanal</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav aria-label="Navegação Principal" class="desktop-nav">
+        <ul class="nav-links">
+          <li><a href="index.html#cardapio">Cardápio</a></li>
+          <li><a href="#espaco" class="active">O Espaço</a></li>
+          <li><a href="#caderno">Grãos da Semana</a></li>
+          <li><a href="#horarios">Horários</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="index.html#cardapio" class="btn btn-primary header-cta-desktop">Voltar ao Cardápio</a>
+        <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobileNavDrawer" onclick="toggleMobileNav()">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <div class="container">
+        <ul class="mobile-nav-list">
+          <li><a href="#espaco" class="mobile-nav-item active" onclick="toggleMobileNav(false)">O Espaço (Casarão)</a></li>
+          <li><a href="#caderno" class="mobile-nav-item" onclick="toggleMobileNav(false)">Grãos da Semana</a></li>
+          <li><a href="#horarios" class="mobile-nav-item" onclick="toggleMobileNav(false)">Horários & Localização</a></li>
+        </ul>
+        <div style="padding-top: 0.75rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+          <a href="index.html#cardapio" class="btn btn-primary" style="width: 100%;">Ver o Cardápio da Casa</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero da Página Secundária -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="meta-kicker">Nossa Casa em Manaus</span>
+        <h1>Um casarão de 1924 restaurado para tomar café sem pressa.</h1>
+        <p>Preservamos as janelas altas, os ladrilhos originais e o quintal arborizado para criar um lugar tranquilo no meio da cidade. Sem reserva de mesa: é só chegar.</p>
+        <div class="hero-links">
+          <a href="#espaco" class="btn btn-primary">Conhecer o Espaço</a>
+          <a href="#caderno" class="btn btn-secondary">Grãos da Semana</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção O Espaço (Interativo) -->
+    <section class="space-section" id="espaco">
+      <div class="container space-layout">
+        
+        <div class="space-narrative-col">
+          <div class="space-header-block">
+            <span class="meta-kicker">O Ambiente</span>
+            <h2 class="space-title">Janelas altas, sombra fresca e cheiro de café passado.</h2>
+            <p class="space-lead">
+              Nosso salão ocupa uma antiga residência restaurada com paredes de tijolo aparente, madeiras originais da região e um pátio interno arborizado. Um espaço pensado para uma pausa no meio do dia, boas conversas ou leitura tranquila.
+            </p>
+          </div>
+
+          <div class="space-triggers-list" role="tablist" aria-label="Ambientes do Casarão">
+            <button type="button" class="space-trigger-card active" role="tab" id="space-trigger-0" aria-selected="true" aria-controls="space-panel-0" tabindex="0" onclick="activateSpace(0)" onmouseenter="hoverSpace(0)">
+              <div class="trigger-body">
+                <div class="trigger-head"><h3 class="trigger-title">Jardim Interno</h3></div>
+                <p class="trigger-desc">Mesas sob luz natural, plantas tropicais e ambiente climatizado.</p>
+              </div>
+              <div class="mobile-inline-photo" aria-hidden="true">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=85" alt="Salão do casarão histórico de 1924 com pé-direito alto, janelas amplas e luz natural" loading="lazy">
+                <span class="mobile-inline-caption">Jardim Interno • Luz natural e plantas tropicais</span>
+              </div>
+            </button>
+
+            <button type="button" class="space-trigger-card" role="tab" id="space-trigger-1" aria-selected="false" aria-controls="space-panel-1" tabindex="-1" onclick="activateSpace(1)" onmouseenter="hoverSpace(1)">
+              <div class="trigger-body">
+                <div class="trigger-head"><h3 class="trigger-title">Balcão de Café</h3></div>
+                <p class="trigger-desc">De onde saem os espressos, coados feitos na hora e as fornadas do dia.</p>
+              </div>
+              <div class="mobile-inline-photo" aria-hidden="true">
+                <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=85" alt="Balcão de café artesanal com atendimento acolhedor e luminárias âmbar" loading="lazy">
+                <span class="mobile-inline-caption">Balcão de Café • Espressos e coados na hora</span>
+              </div>
+            </button>
+
+            <button type="button" class="space-trigger-card" role="tab" id="space-trigger-2" aria-selected="false" aria-controls="space-panel-2" tabindex="-1" onclick="activateSpace(2)" onmouseenter="hoverSpace(2)">
+              <div class="trigger-body">
+                <div class="trigger-head"><h3 class="trigger-title">Louças de Cerâmica</h3></div>
+                <p class="trigger-desc">Xícaras e pratos feitos artesanalmente para manter a temperatura da bebida.</p>
+              </div>
+              <div class="mobile-inline-photo" aria-hidden="true">
+                <img src="https://images.unsplash.com/photo-1579992357154-faf4bde95b3d?auto=format&fit=crop&w=900&q=85" alt="Xícara de cerâmica artesanal rústica feita à mão para servir cafés especiais" loading="lazy">
+                <span class="mobile-inline-caption">Louças de Cerâmica • Feitas artesanalmente</span>
+              </div>
+            </button>
+
+            <button type="button" class="space-trigger-card" role="tab" id="space-trigger-3" aria-selected="false" aria-controls="space-panel-3" tabindex="-1" onclick="activateSpace(3)" onmouseenter="hoverSpace(3)">
+              <div class="trigger-body">
+                <div class="trigger-head"><h3 class="trigger-title">Grãos para Levar</h3></div>
+                <p class="trigger-desc">Pacotes de 250g torrados na semana, em grãos ou moídos na hora para o seu filtro.</p>
+              </div>
+              <div class="mobile-inline-photo" aria-hidden="true">
+                <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=900&q=85" alt="Portafiltros exibindo os grãos selecionados da semana, moagem fresca e extração precisa" loading="lazy">
+                <span class="mobile-inline-caption">Grãos para Levar • Torrados na semana</span>
+              </div>
+            </button>
+          </div>
+
+          <div style="margin-top: 1.75rem;">
+            <a href="https://www.google.com/maps/search/?api=1&query=Polo+Est%C3%A1cio+EAD+-+Av.+Constantino+Nery%2C+300+-+Centro%2C+Manaus+-+AM%2C+69010-160" target="_blank" rel="noopener noreferrer" style="color: var(--accent-caramel); font-weight: 600; font-size: 0.9rem; text-decoration: underline; text-underline-offset: 4px;">Ver localização no Google Maps (Polo Estácio) →</a>
+          </div>
+        </div>
+
+        <!-- Desktop Showcase -->
+        <div class="space-showcase-col">
+          <div class="space-showcase-frame">
+            <div class="space-photo-slide active" id="space-panel-0" role="tabpanel" aria-labelledby="space-trigger-0">
+              <img class="space-slide-img" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=85" alt="Salão do casarão histórico de 1924 com pé-direito alto, janelas amplas e luz natural" loading="lazy">
+              <div class="space-slide-overlay"><div class="space-caption-badge">O Casarão de 1924 • Pé-direito alto e luz natural</div></div>
+            </div>
+            <div class="space-photo-slide" id="space-panel-1" role="tabpanel" aria-labelledby="space-trigger-1">
+              <img class="space-slide-img" src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=85" alt="Balcão de café artesanal com atendimento acolhedor e luminárias âmbar" loading="lazy">
+              <div class="space-slide-overlay"><div class="space-caption-badge">Balcão de Café • Espressos e coados feitos na hora</div></div>
+            </div>
+            <div class="space-photo-slide" id="space-panel-2" role="tabpanel" aria-labelledby="space-trigger-2">
+              <img class="space-slide-img" src="https://images.unsplash.com/photo-1579992357154-faf4bde95b3d?auto=format&fit=crop&w=1200&q=85" alt="Xícara de cerâmica artesanal rústica feita à mão para servir cafés especiais" loading="lazy">
+              <div class="space-slide-overlay"><div class="space-caption-badge">Louças de Cerâmica • Xícaras e pratos artesanais</div></div>
+            </div>
+            <div class="space-photo-slide" id="space-panel-3" role="tabpanel" aria-labelledby="space-trigger-3">
+              <img class="space-slide-img" src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1200&q=85" alt="Portafiltros exibindo os grãos selecionados da semana, moagem fresca e extração precisa" loading="lazy">
+              <div class="space-slide-overlay"><div class="space-caption-badge">Grãos da Semana • Selecionados e torrados artesanalmente</div></div>
+            </div>
+            <div class="space-progress-dots" aria-hidden="true">
+              <span class="progress-dot active"></span>
+              <span class="progress-dot"></span>
+              <span class="progress-dot"></span>
+              <span class="progress-dot"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Os Grãos da Semana -->
+    <section class="notebook-section" id="caderno">
+      <div class="container">
+        <div class="notebook-header">
+          <div>
+            <span class="meta-kicker">Torrefação Própria</span>
+            <h2>Os Grãos da Semana</h2>
+          </div>
+          <p>Torramos toda segunda-feira em pequenos lotes para que o café servido no balcão — e o que você leva para casa — esteja sempre no auge do aroma.</p>
+        </div>
+
+        <div class="notebook-metrics-grid">
+          <div class="metric-block">
+            <span class="metric-label">Lote em Cartaz</span>
+            <span class="metric-val">Catuaí Amarelo</span>
+            <span class="metric-sub">Colheita seletiva • Sul de Minas</span>
+          </div>
+          <div class="metric-block">
+            <span class="metric-label">Notas na Xícara</span>
+            <span class="metric-val">Chocolate & Castanha</span>
+            <span class="metric-sub">Corpo denso e acidez baixa</span>
+          </div>
+          <div class="metric-block">
+            <span class="metric-label">Dia de Torra</span>
+            <span class="metric-val">Toda Segunda-feira</span>
+            <span class="metric-sub">Descanso controlado antes de ir ao moinho</span>
+          </div>
+          <div class="metric-block">
+            <span class="metric-label">Para Fazer em Casa</span>
+            <span class="metric-val">Pacotes de 250g</span>
+            <span class="metric-sub">Em grãos ou moído para o seu método</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="site-footer" id="horarios">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo-wrap" style="color: var(--ink-primary);">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 986 392" class="brand-logo-img" style="height: 38px; width: auto; fill: currentColor;" role="img" aria-label="Logo Espresso">
+              <path fill-rule="evenodd" d="M110.0,377.2L126.0,373.4L141.0,366.3L154.7,356.0L167.0,342.4L174.0,344.4L184.0,345.5L193.0,344.3L199.0,342.3L205.0,338.5L211.5,332.0L215.4,326.0L218.2,319.0L219.4,309.0L218.2,299.0L212.1,287.0L205.0,279.7L193.0,273.7L187.0,272.6L179.0,273.2L176.4,266.0L174.0,263.2L132.0,263.2L26.0,263.2L24.2,264.0L20.0,278.0L18.2,298.0L20.8,316.0L28.8,335.0L39.0,349.4L54.0,363.0L69.0,371.4L85.0,376.3L97.0,377.5ZM432.0,328.2L438.0,326.4L441.4,322.0L442.0,289.4L452.0,296.5L460.0,299.9L473.0,302.0L483.0,301.2L493.8,298.0L504.0,292.2L512.0,284.3L517.6,276.0L521.9,266.0L524.1,256.0L524.8,245.0L523.8,235.0L520.8,224.0L517.0,216.4L510.3,207.0L502.3,200.0L489.0,193.3L477.0,191.5L466.0,192.1L458.0,194.2L450.0,198.0L442.0,205.0L440.3,197.0L436.7,194.0L424.0,193.5L422.0,194.3L419.8,197.0L419.1,200.0L419.0,326.0L423.0,328.5ZM185.6,327.0L177.0,326.5L175.6,325.0L180.4,310.0L181.6,292.0L184.0,291.4L190.0,292.7L195.3,296.0L199.3,301.0L201.0,311.0L199.9,316.0L196.0,322.0L192.0,325.1ZM929.0,301.2L937.0,299.3L947.0,294.5L955.3,288.0L963.0,279.0L968.5,269.0L971.2,260.0L972.5,251.0L972.2,238.0L970.3,229.0L966.1,219.0L960.2,210.0L951.0,201.2L945.0,197.5L935.0,193.2L923.0,191.5L910.0,192.1L898.0,195.3L890.0,199.6L882.0,205.8L875.6,213.0L870.8,221.0L867.0,230.5L865.2,244.0L865.8,257.0L868.9,268.0L873.8,278.0L880.4,286.0L888.0,292.5L897.0,297.7L907.0,300.7L919.0,301.9ZM830.0,301.0L836.0,300.1L845.0,296.7L852.0,292.0L855.6,288.0L859.0,281.9L861.1,275.0L861.4,266.0L860.2,260.0L855.3,251.0L846.9,244.0L840.0,240.7L821.0,235.6L809.0,230.6L804.6,226.0L803.7,222.0L804.5,218.0L806.8,214.0L810.0,211.5L815.0,209.5L823.0,208.6L831.0,209.6L836.0,211.4L846.0,218.4L852.0,218.3L856.2,215.0L857.4,212.0L857.3,207.0L855.3,203.0L851.0,199.5L840.0,194.0L831.0,192.1L821.0,191.6L809.0,193.2L798.0,197.6L792.5,202.0L787.7,208.0L784.7,216.0L784.0,221.0L785.6,233.0L789.7,240.0L797.0,246.3L805.0,250.3L829.0,257.6L837.0,261.8L840.5,268.0L839.9,276.0L836.7,280.0L830.0,283.5L817.0,284.5L804.0,280.1L795.0,272.7L791.0,271.3L786.0,272.7L783.6,275.0L781.5,279.0L781.5,283.0L787.0,290.1L792.0,294.0L800.0,298.0L815.0,301.5ZM746.0,301.0L752.0,299.9L762.0,296.1L767.8,292.0L772.3,287.0L776.4,279.0L777.4,273.0L776.3,260.0L771.3,251.0L763.0,243.9L753.0,239.7L732.0,233.6L725.0,230.4L720.7,225.0L720.5,218.0L722.7,214.0L726.0,211.5L737.0,208.7L749.0,210.5L762.0,218.3L766.0,218.5L769.0,217.3L772.3,214.0L773.3,208.0L771.0,203.4L767.0,199.5L759.0,195.2L753.0,193.4L737.0,191.6L722.0,194.0L710.7,200.0L702.9,209.0L700.7,214.0L699.6,220.0L699.8,228.0L701.8,234.0L706.0,240.4L715.0,247.2L724.0,251.1L745.0,257.5L751.9,261.0L756.3,266.0L757.4,271.0L756.5,275.0L753.9,279.0L749.0,282.3L741.0,284.5L734.0,284.5L722.0,281.3L709.8,272.0L705.0,271.6L702.0,272.7L698.7,276.0L696.9,282.0L698.8,286.0L702.5,290.0L715.0,297.6L730.0,301.4L738.0,301.9ZM649.0,301.0L664.0,296.5L671.0,292.7L679.0,286.6L685.0,279.9L686.2,277.0L684.1,271.0L680.0,266.9L677.0,265.6L673.0,265.6L668.6,268.0L660.0,275.6L653.0,279.5L643.0,281.5L631.0,280.4L621.0,275.5L613.5,268.0L609.6,260.0L608.8,254.0L690.0,253.2L691.9,251.0L692.3,243.0L691.2,233.0L689.1,226.0L682.4,213.0L671.0,201.4L657.0,194.1L642.0,191.5L629.0,192.2L614.0,197.2L600.9,207.0L595.7,213.0L590.9,221.0L587.6,229.0L585.6,238.0L585.6,255.0L588.9,268.0L594.9,279.0L605.0,289.9L618.0,297.7L634.0,301.7ZM551.0,301.3L553.2,300.0L555.1,296.0L555.1,243.0L557.6,229.0L562.0,221.4L569.0,215.5L574.0,213.6L586.0,212.1L596.7,197.0L594.0,193.3L588.0,191.8L577.0,191.8L569.0,194.0L563.0,196.8L555.0,204.1L553.3,196.0L552.0,194.4L549.0,193.3L537.0,193.5L533.8,196.0L532.7,199.0L532.7,296.0L533.8,299.0L537.0,301.5ZM380.0,301.0L394.0,296.7L400.0,292.6L405.3,287.0L409.2,280.0L410.3,275.0L410.4,265.0L409.2,260.0L404.0,252.3L395.0,245.7L385.0,241.9L362.0,236.6L352.0,232.3L348.7,229.0L346.8,225.0L346.9,218.0L348.7,213.0L353.0,207.8L358.0,204.7L365.0,202.5L375.0,202.1L384.0,203.7L393.0,208.7L400.0,215.3L404.0,214.4L406.3,210.0L404.0,205.1L400.0,200.7L396.0,197.5L388.0,194.0L374.0,191.9L359.0,193.5L347.0,199.2L342.6,203.0L337.7,210.0L335.6,216.0L335.0,222.0L335.8,228.0L337.9,233.0L344.0,240.3L353.0,245.3L361.0,248.0L382.0,252.6L393.0,257.3L398.3,264.0L399.5,270.0L399.1,275.0L397.2,280.0L391.0,286.3L385.0,289.3L375.0,291.2L364.0,290.3L355.0,287.2L348.0,282.3L342.0,276.1L339.0,274.7L335.0,275.7L333.6,280.0L335.8,285.0L341.0,290.7L353.0,297.9L366.0,301.2ZM283.0,301.1L298.0,296.8L310.0,288.8L316.0,282.7L320.5,276.0L322.4,270.0L321.2,267.0L319.0,265.6L315.0,265.7L304.0,280.1L300.0,283.6L291.0,288.5L279.0,291.0L269.0,290.5L258.0,286.4L245.8,276.0L238.6,263.0L236.3,249.0L238.0,248.3L324.0,248.3L326.3,246.0L324.8,230.0L321.5,221.0L317.6,214.0L313.1,208.0L306.6,202.0L295.0,195.1L282.0,192.0L272.0,191.9L264.0,193.2L257.0,195.5L248.0,200.7L237.0,211.3L229.2,225.0L225.2,241.0L225.0,251.0L226.1,259.0L231.4,274.0L240.1,286.0L247.0,292.1L253.0,295.8L262.0,299.6L269.0,301.0ZM925.9,280.0L913.0,280.3L902.0,275.5L897.7,272.0L892.4,265.0L888.5,254.0L888.5,239.0L892.4,228.0L896.0,223.1L902.0,217.8L913.0,213.4L926.0,213.4L936.0,217.5L944.0,225.2L947.3,231.0L949.3,237.0L950.3,250.0L946.4,264.0L938.0,274.3L931.0,278.6ZM477.1,280.0L469.0,280.5L464.0,279.5L454.0,274.3L449.4,270.0L445.4,264.0L441.6,252.0L441.5,242.0L442.6,236.0L446.3,227.0L453.0,219.5L465.0,213.8L478.0,213.5L488.0,217.9L496.7,227.0L501.4,240.0L501.5,253.0L496.4,267.0L489.0,275.1L483.0,278.4ZM160.0,250.2L167.0,248.2L175.0,244.2L186.0,235.1L194.4,224.0L199.1,213.0L200.5,206.0L200.5,194.0L196.3,182.0L194.0,179.9L191.0,179.4L179.1,185.0L174.0,189.4L168.8,196.0L160.2,217.0L155.6,225.0L147.0,233.6L137.0,239.8L133.6,243.0L135.0,246.4L141.0,249.2L151.0,250.7ZM72.0,250.1L80.0,247.7L81.9,246.0L82.9,243.0L82.0,236.0L76.1,219.0L73.1,214.0L67.0,207.1L51.0,195.2L44.0,188.0L35.6,175.0L29.4,156.0L27.0,153.7L23.9,155.0L19.3,160.0L16.0,166.0L13.4,173.0L12.0,181.0L11.9,192.0L13.2,201.0L19.3,217.0L28.1,230.0L40.5,241.0L54.0,248.2L65.0,250.3ZM283.0,238.0L238.0,238.0L237.1,237.0L240.5,226.0L246.0,217.3L257.0,207.4L268.0,202.8L283.0,202.5L290.0,204.6L296.0,207.7L300.8,211.0L306.6,217.0L313.4,229.0L315.4,236.0L315.0,237.8ZM96.0,238.5L98.9,236.0L102.8,230.0L107.0,221.0L108.2,216.0L108.9,199.0L107.0,189.0L104.0,180.0L99.1,171.0L93.2,163.0L82.0,152.9L68.0,145.6L61.0,143.6L52.0,142.8L41.0,144.7L38.8,147.0L39.0,156.0L43.8,171.0L53.9,185.0L74.0,201.4L80.5,209.0L86.5,220.0L92.0,236.8L94.0,238.6ZM669.3,236.0L668.0,236.8L609.0,236.8L608.5,235.0L610.7,229.0L617.0,220.4L623.0,215.5L630.0,212.5L641.0,211.4L649.0,212.7L655.0,215.4L661.8,221.0L666.4,228.0ZM128.0,235.2L136.0,231.2L144.2,225.0L151.4,215.0L158.5,197.0L163.6,188.0L171.0,180.5L184.0,171.8L184.5,170.0L183.0,167.8L178.0,165.4L172.0,164.2L160.0,164.0L148.0,167.4L135.0,175.4L124.7,187.0L120.7,195.0L117.8,204.0L116.7,216.0L119.7,230.0L123.0,234.1ZM132.0,163.1L145.0,158.5L154.7,151.0L164.4,138.0L168.3,128.0L170.4,115.0L168.3,102.0L166.4,97.0L161.0,89.1L159.0,86.9L154.8,87.0L147.0,93.1L139.9,103.0L136.6,112.0L134.4,130.0L131.5,140.0L125.3,150.0L115.9,160.0L117.0,162.5L120.0,163.3ZM106.0,155.1L110.0,153.3L114.5,149.0L122.5,138.0L125.7,129.0L127.9,112.0L130.9,102.0L136.3,93.0L145.5,82.0L145.4,80.0L142.0,77.9L131.0,77.6L125.0,78.8L118.0,81.7L107.0,89.7L98.8,100.0L92.7,114.0L91.5,128.0L92.9,138.0L98.6,150.0L103.0,154.4ZM82.0,94.1L92.0,89.3L97.3,83.0L100.6,74.0L100.1,64.0L95.0,54.1L89.0,48.9L81.0,45.7L70.0,46.0L61.6,50.0L58.0,53.0L54.0,58.6L51.2,69.0L52.0,77.0L56.0,85.0L64.0,91.8L74.0,94.9ZM125.0,49.1L132.0,46.3L136.3,42.0L139.5,35.0L139.6,27.0L136.3,20.0L132.0,15.8L126.0,12.9L118.5,13.0L113.0,15.0L107.0,20.7L104.7,25.0L103.8,33.0L106.7,41.0L111.0,45.5L119.0,49.1Z"/>
+            </svg>
+          </a>
+          <p>Cafeteria e torrefação artesanal em Manaus. Cafés brasileiros frescos, receitas próprias e fornadas diárias.</p>
+          <a href="index.html#cardapio" class="btn btn-primary" style="margin-top: 0.5rem;">Conhecer o Cardápio</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Horários da Casa</h4>
+          <div class="hours-list">
+            <div class="hours-item"><span>Terça a Sexta-feira</span><span style="font-variant-numeric: tabular-nums;">08:00 — 20:00</span></div>
+            <div class="hours-item"><span>Sábados</span><span style="font-variant-numeric: tabular-nums;">09:00 — 21:00</span></div>
+            <div class="hours-item"><span>Domingos e Feriados</span><span style="font-variant-numeric: tabular-nums;">09:00 — 18:30</span></div>
+            <div class="hours-item" style="color: var(--ink-muted);"><span>Segundas-feiras</span><span>Fechado</span></div>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Endereço & Contato</h4>
+          <div class="address-details">
+            <p>
+              <a href="https://www.google.com/maps/search/?api=1&query=Polo+Est%C3%A1cio+EAD+-+Av.+Constantino+Nery%2C+300+-+Centro%2C+Manaus+-+AM%2C+69010-160" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;" title="Abrir no Google Maps (Polo Estácio)">
+                <strong style="color: var(--ink-primary); text-decoration: underline; text-underline-offset: 3px;">Av. Constantino Nery, 300</strong> (Polo Estácio)<br>
+                Centro • Manaus - AM, 69010-160
+              </a>
+            </p>
+            <p>Salão climatizado, bicicletário e pet-friendly.</p>
+            <p><strong>WhatsApp & Encomendas:</strong><br><a href="tel:+559284259694" style="color: var(--accent-caramel); font-weight: 600; text-decoration: none;">+55 92 8425-9694</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Espresso — Cafeteria Artesanal & Confeitaria de Forno.</div>
+        <div><a href="index.html" style="color: inherit; text-decoration: underline;">Voltar à Página Principal</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* Ambientes do Casarão: troca de foto, estado ARIA e indicador */
+    function activateSpace(index) {
+      const triggers = document.querySelectorAll('.space-trigger-card');
+      const slides = document.querySelectorAll('.space-photo-slide');
+      const dots = document.querySelectorAll('.space-progress-dots .progress-dot');
+      triggers.forEach((t, i) => {
+        const on = i === index;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+      });
+      slides.forEach((sl, i) => sl.classList.toggle('active', i === index));
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+
+    /* Hover só troca a foto em dispositivos com mouse (evita disparo duplo no toque) */
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+    function hoverSpace(index) {
+      if (canHover.matches) activateSpace(index);
+    }
+
+    /* Navegação por setas entre os ambientes (padrão WAI-ARIA Tabs) */
+    const spaceList = document.querySelector('.space-triggers-list');
+    if (spaceList) {
+      const triggers = Array.from(spaceList.querySelectorAll('.space-trigger-card'));
+      spaceList.addEventListener('keydown', (e) => {
+        const cur = triggers.indexOf(document.activeElement);
+        if (cur === -1) return;
+        let next = null;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') next = (cur + 1) % triggers.length;
+        else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') next = (cur - 1 + triggers.length) % triggers.length;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = triggers.length - 1;
+        if (next === null) return;
+        e.preventDefault();
+        triggers[next].focus();
+        activateSpace(next);
+      });
+    }
+
+    /* Menu mobile */
+    function toggleMobileNav(forceState) {
+      const toggleBtn = document.getElementById('mobileNavToggle');
+      const drawer = document.getElementById('mobileNavDrawer');
+      if (!toggleBtn || !drawer) return;
+      const isOpen = typeof forceState === 'boolean' ? forceState : !drawer.classList.contains('is-open');
+      toggleBtn.classList.toggle('is-open', isOpen);
+      drawer.classList.toggle('is-open', isOpen);
+      toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      toggleBtn.setAttribute('aria-label', isOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+      drawer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') toggleMobileNav(false);
+    });
+    document.addEventListener('click', (e) => {
+      const drawer = document.getElementById('mobileNavDrawer');
+      if (drawer && drawer.classList.contains('is-open') && !e.target.closest('.site-header')) {
+        toggleMobileNav(false);
+      }
+    });
+  </script>
+
+  <!-- Plugins Locais (Lenis Smooth Scroll & Mobile Touch Physics) -->
+  <script src="assets/plugins/lenis.min.js?v=7" defer></script>
+  <script src="assets/plugins/mobile-ux-suite.js?v=7" defer></script>
+</body>
+</html>
