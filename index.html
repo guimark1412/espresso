@@ -1346,6 +1346,8 @@
         padding: 0.35rem 0.5rem;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
+        touch-action: pan-x;
+        overscroll-behavior-x: contain;
       }
 
       .menu-tabs-nav::-webkit-scrollbar {
@@ -1892,22 +1894,27 @@
         display: none;
       }
 
-      /* Seção Pilares: Carrossel Horizontal Deslizável Elegante no Mobile */
+      /* Seção Pilares: Carrossel Horizontal Deslizável Estritamente Travado no Eixo X (Mobile) */
       .pillars-section {
         padding: 1.75rem 0;
         background-color: var(--bg-surface);
+        touch-action: pan-y;
       }
 
       .pillars-grid {
         display: flex;
         flex-direction: row;
         overflow-x: auto;
+        overflow-y: hidden;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         gap: 0.85rem;
         padding: 0.25rem 0.25rem 0.5rem;
         margin: 0 -0.25rem;
+        touch-action: pan-x;
+        overscroll-behavior-x: contain;
+        overscroll-behavior-y: none;
       }
 
       .pillars-grid::-webkit-scrollbar {
@@ -1922,8 +1929,13 @@
         border: 1px solid rgba(35, 24, 21, 0.08);
         border-radius: 20px;
         padding: 1.4rem 1.35rem;
-        box-shadow: 0 6px 20px -6px rgba(35, 24, 21, 0.05);
+        box-shadow: 0 4px 16px -4px rgba(35, 24, 21, 0.06);
         gap: 0.6rem;
+        touch-action: pan-x;
+        transform: none !important;
+        transition: none !important;
+        -webkit-user-select: none;
+        user-select: none;
       }
 
       .pillar-cell:first-child {
@@ -3181,9 +3193,9 @@
   </script>
 
   <!-- Plugins Locais Baixados (PC & Mobile UI Suite com Lenis Touch Inertia) -->
-  <script src="assets/plugins/lenis.min.js?v=6" defer></script>
-  <script src="assets/plugins/vanilla-tilt.min.js?v=6" defer></script>
-  <script src="assets/plugins/liquid-glass.js?v=6" defer></script>
-  <script src="assets/plugins/mobile-ux-suite.js?v=6" defer></script>
+  <script src="assets/plugins/lenis.min.js?v=7" defer></script>
+  <script src="assets/plugins/vanilla-tilt.min.js?v=7" defer></script>
+  <script src="assets/plugins/liquid-glass.js?v=7" defer></script>
+  <script src="assets/plugins/mobile-ux-suite.js?v=7" defer></script>
 </body>
 </html>
