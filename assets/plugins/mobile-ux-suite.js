@@ -17,14 +17,15 @@
 
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
+    // Configuração do Lenis com interpolação pura (lerp) sem duração fixa conflitante
+    // Evita conflitos e solavancos ao inverter bruscamente a direção da roda do mouse
     const lenis = new window.Lenis({
-      lerp: isMobile ? 0.11 : 0.09,
-      duration: isMobile ? 1.0 : 1.1,
+      lerp: isMobile ? 0.12 : 0.085,
       smoothWheel: true,
-      syncTouch: true,
+      syncTouch: isMobile,
       syncTouchLerp: 0.12,
       touchMultiplier: 1.0,
-      wheelMultiplier: 1,
+      wheelMultiplier: 1.0,
       prevent: (node) => Boolean(
         node && node.closest && (
           node.closest('.pillars-grid') || 
@@ -193,6 +194,13 @@
         if (entry.isIntersecting) {
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
+          // Limpa inline styles após conclusão para liberar camadas da GPU e evitar engasgos em reversões rápidas de scroll
+          setTimeout(() => {
+            if (entry.target) {
+              entry.target.style.transition = '';
+              entry.target.style.transform = '';
+            }
+          }, 600);
           observer.unobserve(entry.target);
         }
       });

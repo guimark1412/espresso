@@ -87,7 +87,7 @@
     }
 
     html {
-      scroll-behavior: smooth;
+      scroll-behavior: auto;
       scroll-padding-top: var(--header-h);
       background-color: var(--bg-ground);
       color: var(--ink-primary);
@@ -103,6 +103,7 @@
       color: var(--ink-primary);
       min-height: 100vh;
       overflow-x: hidden;
+      overscroll-behavior-y: none;
       position: relative;
     }
 
@@ -183,7 +184,7 @@
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       border-bottom: 1px solid rgba(255, 255, 255, 0.14);
       box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-      transition: var(--transition-smooth);
+      transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .header-inner {
@@ -3193,9 +3194,9 @@
   </script>
 
   <!-- Plugins Locais Baixados (PC & Mobile UI Suite com Lenis Touch Inertia) -->
-  <script src="assets/plugins/lenis.min.js?v=7" defer></script>
-  <script src="assets/plugins/vanilla-tilt.min.js?v=7" defer></script>
-  <script src="assets/plugins/liquid-glass.js?v=7" defer></script>
-  <script src="assets/plugins/mobile-ux-suite.js?v=7" defer></script>
+  <script src="assets/plugins/lenis.min.js?v=8" defer></script>
+  <script src="assets/plugins/vanilla-tilt.min.js?v=8" defer></script>
+  <script src="assets/plugins/liquid-glass.js?v=8" defer></script>
+  <script src="assets/plugins/mobile-ux-suite.js?v=8" defer></script>
 </body>
 </html>
