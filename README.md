@@ -1,75 +1,93 @@
 # ☕ Espresso — Casa de Café & Forno
 
-> **Landing page artesanal, sensorial e editorial desenvolvida em colaboração com Gemini Flash 3.8 e Argon (Google DeepMind Antigravity).**
+> **🧪 Projeto de Teste & Benchmark para Agentes de IA Autônomos (Google DeepMind Gemini Flash 3.8 & Argon)**  
+> *Landing page artesanal, sensorial e editorial desenvolvida e lapidada 100% via pair programming com IA no ambiente Antigravity.*
 
 [![Deploy with Vercel](https://img.shields.io/badge/Deploy-Vercel-black?style=for-the-badge&logo=vercel)](https://espresso-artesanal.vercel.app)
-[![Powered by Gemini](https://img.shields.io/badge/AI-Gemini%20Flash%203.8-orange?style=for-the-badge&logo=google)](https://deepmind.google/technologies/gemini/)
-[![Engine Argon](https://img.shields.io/badge/Engine-Argon%20Antigravity-4285F4?style=for-the-badge)](https://deepmind.google)
+[![Powered by Gemini](https://img.shields.io/badge/AI%20Benchmark-Gemini%20Flash%203.8-orange?style=for-the-badge&logo=google)](https://deepmind.google/technologies/gemini/)
+[![Engine Argon](https://img.shields.io/badge/Agent%20Harness-Argon%20Antigravity-4285F4?style=for-the-badge)](https://deepmind.google)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge)]()
 
 ---
 
 ## 🌐 Demonstração Online
 
 - **Domínio Principal:** [https://espresso-artesanal.vercel.app](https://espresso-artesanal.vercel.app)
-- **Domínio Alternativo:** [https://espresso-manaus.vercel.app](https://espresso-manaus.vercel.app)
+- **Domínio Alternativo (Manaus):** [https://espresso-manaus.vercel.app](https://espresso-manaus.vercel.app)
 - **Repositório GitHub:** [https://github.com/guimark1412/espresso](https://github.com/guimark1412/espresso)
 
 ---
 
-## 📖 Sobre o Projeto
+## 🧪 Propósito: Testbed & Benchmark de Agentes de IA
 
-O **Espresso** é um conceito arquitetônico e sensorial de cafeteria e casa de forno instalada em um casarão histórico restaurado em Manaus. 
+Este projeto foi construído primariamente como um **laboratório de teste e benchmark para agentes de inteligência artificial autônomos**, explorando os limites de criação, refatoração e resolução de problemas em tempo real com o modelo **Gemini Flash 3.8** e a suíte **Argon** (Google DeepMind Antigravity).
 
-Esta landing page foi construída do zero, combinando o minimalismo editorial europeu com o calor da cultura do café artesanal brasileiro. Todo o design foi refinado iterativamente para oferecer uma experiência visual refinada no desktop e uma usabilidade tátil perfeita em smartphones (iOS e Android).
+O objetivo central foi testar a autonomia e precisão técnica do agente em cenários complexos de engenharia frontend:
+
+1. **🎨 Direção de Arte & Anti-Slop Visual:** Criação de layout editorial exclusivo para café artesanal, evitando clichês de templates e priorizando tipografia suíça com `clamp()` dinâmico e paleta quente de linho (`#FAF7F2`) e café.
+2. **📱 Engenharia de Física Tátil (Mobile UX):** Diagnóstico e resolução de conflitos sutis entre rolagem virtual via JavaScript e gestos nativos de 120Hz no iPhone (iOS Safari / WebKit), estabilizando carrosséis com trava estrita de eixo (`touch-action: pan-x`).
+3. **⚡ Otimização de Performance & Core Web Vitals:** Prevenção de travamentos e conflitos de aceleração gráfica da GPU ao inverter bruscamente a direção do scroll do mouse (remoção de `scroll-behavior: smooth` redundante e isolamento de camadas de compositing).
+4. **🌊 Liquid Glass & Shaders SVG:** Simulação óptica de refração e luz especular em tempo real para botões, pílulas e gaveta de navegação mobile com `backdrop-filter`.
+5. **🤝 Pair Programming Iterativo:** Capacidade do agente de processar capturas de tela do usuário, diagnosticar causas-raiz e implementar correções cirúrgicas em minutos.
+6. **🚀 Pipeline de Deploy & Versionamento:** Gerenciamento autônomo de Git, criação de repositório via API, versionamento semântico de commits e deploy de borda global na Vercel.
 
 ---
 
-## ✨ Principais Funcionalidades & Arquitetura UX
+## 📖 O Conceito: Espresso Casa de Café & Forno
 
-### 1. 🎯 Física de Toque Mobile Estabilizada (iPhone / iOS ProMotion)
-- **Trava Estrita no Eixo Horizontal (`touch-action: pan-x`):** O carrossel de pilares sensoriais desliza exclusivamente da esquerda para a direita, sem oscilações diagonais ou flutuação 3D ao toque.
-- **Scroll Snap Preciso:** Cartões com `scroll-snap-type: x mandatory` centralizam dinamicamente com inércia natural de 120Hz.
-- **Isolamento de Gestos:** O motor virtual Lenis detecta via `node.closest` a interação em áreas horizontais e cede o controle imediato ao WebKit nativo.
+O **Espresso** representa o conceito de uma casa de café e forno artesanal instalada em um casarão histórico restaurado em Manaus. 
 
-### 2. 🌊 Liquid Glass & Microinterações
-- **Gaveta de Navegação Mobile:** Efeito de vidro escuro profundo (`rgba(20, 13, 10, 0.98)`), desfoque óptico `backdrop-filter: blur(28px)` e transições suaves.
-- **Barra Inferior Flutuante Inteligente:** Exibe status operacional e atalho para o cardápio, ocultando-se suavemente ao alcançar o rodapé ou quando o Hero já apresenta botões de ação.
-- **3D Tilt & Glare Suave no Desktop:** Inclinação e luz especular calculadas em tempo real sob o cursor em dispositivos com mouse fino.
+- **Caldas e Doces de Tacho:** Doce de leite e bases preparados na própria cozinha da casa, sem xaropes industriais.
+- **Torra Fresca Semanal:** Grãos especiais de pequenos produtores brasileiros torrados em lotes curtos.
+- **Salão & Jardim Interno:** Ambiente acolhedor sem necessidade de reservas ("é só chegar e sentar").
+- **Carro-chefe:** O autêntico **Café Bombom** servido em taça de vidro com leite condensado de tacho, espresso duplo e cumaru.
 
-### 3. 📜 Cardápio da Casa & Split Fotográfico
-- Abas comutáveis sem recarregamento (`Assinatura`, `Espressos`, `Coados na Mesa`, `Forno & Confeitaria`, `Ritual & Origens`).
-- Transições de fade e física de swipe por gestos móveis.
-- Exibição de cafés especiais com notas sensoriais, método de extração e ingredientes frescos da casa.
+---
 
-### 4. 🏛️ Página Editorial "Sobre a Casa" (`sobre.html`)
-- Página completa detalhando a restauração do casarão histórico em Manaus, a seleção dos pequenos produtores brasileiros e os métodos de torra da casa.
+## ✨ Arquitetura UX & Microinterações
 
-### 5. ⏰ Status Operacional em Tempo Real
-- Cálculo automático baseado no fuso horário local de Manaus (GMT-4), indicando se a casa está **Aberta Agora**, **Fechada** ou o horário da próxima abertura.
+### 1. 🎯 Física de Toque Mobile Estabilizada (iPhone / Android)
+- **Trava Estrita no Eixo Horizontal (`touch-action: pan-x; overscroll-behavior-x: contain`):** O carrossel de pilares sensoriais desliza suavemente da esquerda para a direita, sem oscilações verticais ou flutuação indevida.
+- **Scroll Snap Preciso:** Cartões com `scroll-snap-type: x mandatory` centralizam dinamicamente com inércia natural.
+- **Prevenção Cirúrgica no Lenis:** Detecção via `node.closest()` que cede o controle de toque ao motor nativo do navegador em elementos com rolagem horizontal.
+
+### 2. 🖱️ Rolagem Suave sem Engasgos (Anti-Jitter Scroll Engine)
+- **Interpolação Pura (Lerp 0.085):** O Lenis opera com cálculo contínuo baseado em frames (`raf`), permitindo reverter bruscamente a rotação da roda do mouse sem solavancos ou perda de sincronia.
+- **Isolamento de Estilos Inline:** Liberação imediata de camadas de GPU (`transform` e `transition`) após animações de entrada (`IntersectionObserver`), garantindo 60/120 FPS contínuos durante scrolls rápidos.
+
+### 3. 🌊 Liquid Glass & Gaveta Mobile
+- **Gaveta de Navegação:** Vidro escuro profundo (`rgba(20, 13, 10, 0.98)`), desfoque óptico `backdrop-filter: blur(28px)` e sombras multicamadas.
+- **Barra Flutuante Inteligente:** Efeito pílula inferior que monitora a visibilidade do Hero e do Rodapé, recolhendo-se automaticamente para não sobrepor botões interativos.
+
+### 4. 📜 Cardápio com Abas & Acessibilidade WAI-ARIA
+- Navegação fluida entre categorias (`Assinatura`, `Espressos`, `Coados na Mesa`, `Forno & Confeitaria`, `Ritual & Origens`) com suporte completo a atalhos de teclado.
+
+### 5. ⏰ Status em Tempo Real
+- Verificação dinâmica com base no fuso horário de Manaus (GMT-4), indicando em tempo real se o salão está **Aberto Agora**, **Fechado** ou o horário da próxima abertura.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **HTML5 Semântico:** Estrutura acessível com tags semânticas, atributos WAI-ARIA para abas e gaveta móvel.
+- **HTML5 Semântico:** `<main>`, `<section>`, `<article>`, `<header>`, `<nav>`, atributos WAI-ARIA.
 - **CSS3 Moderno:**
   - CSS Grid & Flexbox
   - Tipografia Fluida com `clamp()`
-  - Variáveis de Cor HSL e Cores Personalizadas (`--bg-surface`, `--accent-caramel`, `--ink-primary`)
-  - `backdrop-filter` e efeitos de refração óptica de vidro
-- **JavaScript Vanilla:** Zero dependências de frameworks pesados, garantindo carregamento instantâneo e pontuação máxima no Core Web Vitals (LCP < 1.2s).
+  - Variáveis de Cor HSL e Custom Properties
+  - `backdrop-filter` e efeitos de refração óptica
+- **JavaScript Vanilla:** Zero dependências de frameworks volumosos (carregamento ultra-rápido).
 - **Bibliotecas Leves:**
-  - [Lenis](https://github.com/darkroomengineering/lenis) (Smooth Virtual Scroll)
-  - [Vanilla-Tilt](https://micku7zu.github.io/vanilla-tilt.js/) (Desktop 3D Micro-interactions)
-- **Hospedagem & Deploy:** [Vercel](https://vercel.com) com borda global e compressão Brotli.
+  - [Lenis](https://github.com/darkroomengineering/lenis) (Smooth Virtual Scroll com interpolação contínua)
+  - [Vanilla-Tilt](https://micku7zu.github.io/vanilla-tilt.js/) (Microinterações 3D sutis no Desktop)
+- **Hospedagem & Deploy:** [Vercel](https://vercel.com) com CDN global e compressão Brotli.
 
 ---
 
-## 🤖 Créditos de Desenvolvimento
+## 🤖 Créditos do Benchmark de IA
 
-- **Conceito & Pair Programming:** [guimark1412](https://github.com/guimark1412)
+- **Pair Programming & Testes:** [guimark1412](https://github.com/guimark1412)
 - **Modelo de IA:** Gemini Flash 3.8 (Google DeepMind)
-- **Ambiente de Agente:** Argon (Antigravity)
+- **Harness & Ferramentas:** Argon (Antigravity Agent Platform)
 
 ---
 
@@ -81,7 +99,7 @@ Esta landing page foi construída do zero, combinando o minimalismo editorial eu
    cd espresso
    ```
 
-2. Abra o arquivo `index.html` diretamente no seu navegador, ou utilize qualquer servidor estático local:
+2. Abra o arquivo `index.html` no seu navegador ou utilize um servidor estático local:
    ```bash
    # Com Python
    python -m http.server 8000
@@ -90,4 +108,4 @@ Esta landing page foi construída do zero, combinando o minimalismo editorial eu
    npx serve .
    ```
 
-3. Acesse `http://localhost:8000` ou a porta indicada pelo seu terminal.
+3. Acesse `http://localhost:8000`.
