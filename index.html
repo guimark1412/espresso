@@ -1,0 +1,3128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espresso — Cafeteria Artesanal & Casa de Torra</title>
+  
+  <!-- Google Fonts: Estritamente 2 Famílias (Instrument Serif para Display Editorial + Plus Jakarta Sans com Tabular Nums nativo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM TOKENS (:root) — 5-PILLAR AUDIT & 60-30-10 RULE
+       Arquétipo: Editorial Split & Warm Architectural Grid (Awwwards / Squarespace)
+       ========================================================================== */
+    :root {
+      /* 60% Primary Ground (Fundo Principal) */
+      --bg-ground: #FAF6F0;              /* Off-white cremoso / leite condensado */
+      
+      /* 30% Structural Surface & Ink (Superfícies Neutras e Tipografia) */
+      --bg-surface: #F3ECE2;             /* Superfície aveludada de apoio */
+      --bg-surface-elevated: #FDFBF8;    /* Cartão editorial limpo */
+      --bg-glass: rgba(250, 246, 240, 0.82); /* Vidro fosco para barra e anotações */
+      --bg-espresso-dark: #231815;       /* Contraste dramático editorial */
+      
+      --ink-primary: #231815;            /* Espresso profundo para títulos */
+      --ink-secondary: #6E584E;          /* Marrom suave para leitura (60ch-65ch) */
+      --ink-muted: #9A8579;              /* Metadados e legendas discretas */
+      
+      /* 10% High-Contrast Accent (Apenas CTAs primários e pontos focais) */
+      --accent-caramel: #B86B35;         /* Caramelo Toffee */
+      --accent-caramel-hover: #9C5625;   /* Estado hover profundo */
+      
+      /* Bordas de 1px Calibradas (Sem drop-shadows pretas pesadas) */
+      --border-hairline: rgba(35, 24, 21, 0.10);
+      --border-strong: rgba(35, 24, 21, 0.22);
+      --border-light-on-dark: rgba(250, 246, 240, 0.14);
+      
+      /* Escala Tipográfica (Máximo 2 Famílias) */
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      
+      /* Ritmo Espacial Estrito em Múltiplos de 8px */
+      --space-8: 0.5rem;     /* 8px */
+      --space-16: 1rem;      /* 16px */
+      --space-24: 1.5rem;    /* 24px */
+      --space-32: 2rem;      /* 32px */
+      --space-48: 3rem;      /* 48px */
+      --space-64: 4rem;      /* 64px */
+      --space-96: 6rem;      /* 96px */
+      --space-128: 8rem;     /* 128px */
+      
+      /* Raios Consistentes */
+      --radius-pill: 9999px;
+      --radius-card: 16px;
+      --radius-sm: 8px;
+
+      /* Altura de Cabeçalho Padronizada */
+      --header-h: 72px;
+      
+      /* Curva de Transição Editorial (Pillar 5: Micro-Interactions) */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ==========================================================================
+       RESET & BASE
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-ground);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg-ground);
+      color: var(--ink-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Textura Sutil de Papel Artesanal / Linho via SVG Noise */
+    .linen-grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.25;
+      mix-blend-mode: multiply;
+    }
+
+    /* Tipografia Display com Tracking Negativo, Line-Height Calibrado e Text-Wrap Balance */
+    h1, h2, h3, h4, .display-serif {
+      font-family: var(--font-display);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 1.06;
+      color: var(--ink-primary);
+      text-wrap: balance;
+    }
+
+    p {
+      color: var(--ink-secondary);
+      max-width: 65ch; /* Limite estrito de leitura */
+      line-height: 1.7;
+    }
+
+    /* Números Tabulares Nativos na Sans (Sem poluir com 3ª fonte) */
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1;
+    }
+
+    /* Metadados Estruturados Estilo Editorial */
+    .meta-kicker {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-caramel);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .meta-kicker::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent-caramel);
+    }
+
+    /* Container com Respiro Lateral Generoso */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+
+    /* ==========================================================================
+       HEADER & NAVEGAÇÃO (Integrado ao Topo Imersivo Escuro com Blur Translúcido)
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(28, 19, 14, 0.84);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      transition: var(--transition-smooth);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--header-h);
+      gap: clamp(1rem, 2.5vw, 2.5rem);
+    }
+
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 0.95rem;
+      transition: var(--transition-smooth);
+      flex-shrink: 0;
+    }
+
+    .brand-logo-wrap:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .brand-logo-img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 1.1rem;
+      border-left: 1px solid rgba(255, 255, 255, 0.14);
+      white-space: nowrap;
+    }
+
+    .brand-tagline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #fdfbf7;
+      line-height: 1.1;
+    }
+
+    .brand-sub {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #e08a47;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: clamp(1rem, 1.8vw, 1.75rem);
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #d6cfc7;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      transition: var(--transition-smooth);
+      position: relative;
+      padding: var(--space-8) 0;
+    }
+
+    .nav-links a:hover {
+      color: #fdfbf7;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #e08a47;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.35s var(--ease-out-expo);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+      flex-shrink: 0;
+    }
+
+    /* Botão Menu Sanduíche Mobile (Touch Target 44px x 44px) */
+    .mobile-nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      color: #fdfbf7;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-nav-toggle:hover,
+    .mobile-nav-toggle:focus-visible {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.35);
+      outline: none;
+    }
+
+    .hamburger-box {
+      width: 22px;
+      height: 16px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      width: 22px;
+      height: 2px;
+      background-color: #fdfbf7;
+      border-radius: 2px;
+      position: absolute;
+      transition: transform 0.28s var(--ease-out-expo), opacity 0.2s ease, top 0.28s ease, background-color 0.28s ease;
+    }
+
+    .hamburger-inner {
+      top: 7px;
+      left: 0;
+    }
+
+    .hamburger-inner::before {
+      content: "";
+      top: -6px;
+      left: 0;
+    }
+
+    .hamburger-inner::after {
+      content: "";
+      top: 6px;
+      left: 0;
+    }
+
+    /* Transformação do Hamburger para X quando aberto */
+    .mobile-nav-toggle.is-open .hamburger-inner {
+      background-color: transparent;
+    }
+
+    .mobile-nav-toggle.is-open .hamburger-inner::before {
+      top: 0;
+      transform: rotate(45deg);
+      background-color: #e08a47;
+    }
+
+    .mobile-nav-toggle.is-open .hamburger-inner::after {
+      top: 0;
+      transform: rotate(-45deg);
+      background-color: #e08a47;
+    }
+
+    /* Drawer / Gaveta de Navegação Mobile */
+    .mobile-nav-drawer {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: rgba(24, 16, 12, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+      padding: 1.25rem 0 1.75rem;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.28s var(--ease-out-expo), transform 0.28s var(--ease-out-expo);
+      pointer-events: none;
+      z-index: 99;
+    }
+
+    .mobile-nav-drawer.is-open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .mobile-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-bottom: 1.25rem;
+      padding: 0;
+    }
+
+    .mobile-nav-item {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0.65rem 1rem;
+      color: #fdfbf7;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .mobile-nav-item:hover,
+    .mobile-nav-item:active {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #e08a47;
+    }
+
+    .mobile-drawer-cta {
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-block {
+      width: 100%;
+      min-height: 48px;
+    }
+
+    /* Botões Aveludados com Microinterações Refinadas & Touch Target >= 44px */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-8);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      padding: 0.75rem 1.6rem;
+      min-height: 44px;
+      border-radius: var(--radius-pill);
+      transition: var(--transition-smooth);
+      cursor: pointer;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(180deg, #d87c37 0%, #b86b35 100%);
+      color: #fdfbf7;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 8px 24px -4px rgba(184, 107, 53, 0.45);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(180deg, #e08a47 0%, #c47238 100%);
+      border-color: rgba(255, 255, 255, 0.38);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -4px rgba(224, 138, 71, 0.55);
+    }
+
+    .btn-secondary {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: #fdfbf7;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.45);
+      transform: translateY(-2px);
+    }
+
+    /* Foto em Destaque Mobile no Hero (Oculta no Desktop, Exibida após o título no Mobile) */
+    .hero-mobile-visual {
+      display: none;
+    }
+
+    /* ==========================================================================
+       HERO IMERSIVO & FULL-BLEED COVER (Camadas, Profundidade & Movimento)
+       ========================================================================== */
+    @keyframes fadeUpStagger {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatSlow {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes pulseNode {
+      0%, 100% {
+        box-shadow: 0 0 0 4px rgba(224, 138, 71, 0.25), 0 0 12px rgba(224, 138, 71, 0.7);
+      }
+      50% {
+        box-shadow: 0 0 0 8px rgba(224, 138, 71, 0.08), 0 0 20px rgba(224, 138, 71, 0.95);
+      }
+    }
+
+    .stagger-item {
+      opacity: 0;
+      animation: fadeUpStagger 0.85s var(--ease-out-expo) forwards;
+    }
+
+    .stagger-1 { animation-delay: 100ms; }
+    .stagger-2 { animation-delay: 200ms; }
+    .stagger-3 { animation-delay: 300ms; }
+    .stagger-4 { animation-delay: 400ms; }
+    .stagger-5 { animation-delay: 500ms; }
+
+    .hero-section {
+      position: relative;
+      min-height: calc(100vh - var(--header-h));
+      display: flex;
+      align-items: center;
+      padding: clamp(2.2rem, 4.2vh, 3.8rem) 0;
+      background-color: #1c130e;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    /* Camada Fotográfica Full-Bleed com Sangria Total e Gradiente Calculado */
+    .hero-fullbleed-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-fullbleed-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 74% center;
+      filter: saturate(1.12) contrast(1.06) brightness(0.92);
+      transform: scale(1.02);
+      transition: transform 1.6s var(--ease-out-expo);
+    }
+
+    .hero-section:hover .hero-fullbleed-bg img {
+      transform: scale(1.05);
+    }
+
+    /* Gradiente Rico e Profundo (#1c130e) Garantindo Leitura à Esquerda e Profundidade à Direita */
+    .hero-fullbleed-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        radial-gradient(circle at 74% 48%, rgba(224, 138, 71, 0.16) 0%, rgba(28, 19, 14, 0.42) 44%, rgba(28, 19, 14, 0.90) 85%),
+        linear-gradient(90deg, #1c130e 0%, #1c130e 35%, rgba(28, 19, 14, 0.92) 52%, rgba(28, 19, 14, 0.32) 75%, rgba(28, 19, 14, 0.68) 100%),
+        linear-gradient(180deg, rgba(28, 19, 14, 0.68) 0%, transparent 24%, transparent 76%, rgba(28, 19, 14, 0.88) 100%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: clamp(2.5rem, 5vw, 4.5rem);
+      align-items: center;
+      width: 100%;
+    }
+
+    /* Coluna Esquerda com Whitespace e Respiro Intencional */
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero-copy .meta-kicker {
+      color: #e08a47;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      padding: 0.42rem 1.05rem;
+      border-radius: var(--radius-pill);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+      margin-bottom: clamp(1rem, 1.8vh, 1.4rem);
+    }
+
+    .hero-copy .meta-kicker::before {
+      background-color: #e08a47;
+      box-shadow: 0 0 8px rgba(224, 138, 71, 0.8);
+    }
+
+    .hero-title {
+      font-size: clamp(2.85rem, 5.2vw, 4.65rem);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: #fdfbf7;
+      margin-bottom: clamp(1.2rem, 2vh, 1.6rem); /* Respiro proporcional calibrado */
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: #e08a47;
+      font-weight: 400;
+    }
+
+    .hero-lead {
+      font-size: clamp(1.0625rem, 1.2vw, 1.1875rem);
+      color: #d1d5db; /* Contraste equilibrado e macio */
+      max-width: 36rem;
+      line-height: 1.6;
+      margin-bottom: clamp(1.5rem, 2.5vh, 2.2rem); /* Respiro amplo e otimizado */
+    }
+
+    .hero-lead strong {
+      color: #fdfbf7;
+      font-weight: 600;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .hero-sensory-footnote {
+      margin-top: clamp(1.8rem, 2.8vh, 2.5rem);
+      padding-top: clamp(1.1rem, 1.8vh, 1.4rem);
+      border-top: 1px solid rgba(255, 255, 255, 0.10);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(1.25rem, 2.5vw, 2rem);
+      width: 100%;
+      max-width: 36rem;
+    }
+
+    .footnote-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footnote-title {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: #fdfbf7;
+    }
+
+    .footnote-desc {
+      font-size: 0.85rem;
+      color: #d1d5db;
+      line-height: 1.55;
+    }
+
+    /* Palco Direito: Camadas Descoladas do Fundo (Layering + Flutuação Contínua) */
+    .hero-visual-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 560px;
+      width: 100%;
+    }
+
+    .hero-annotations-stage {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      height: 550px;
+    }
+
+    /* Halo Volumétrico Sutil para Descolar os Planos de Profundidade */
+    .hero-annotations-stage::before {
+      content: "";
+      position: absolute;
+      inset: 10% 15%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(224, 138, 71, 0.14) 0%, transparent 70%);
+      filter: blur(32px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Container de Entrada em Cascata dos Pins */
+    .layer-callout {
+      position: absolute;
+      z-index: 10;
+      opacity: 0;
+      animation: fadeUpStagger 0.9s var(--ease-out-expo) forwards;
+    }
+
+    /* Wrapper Interno de Flutuação Contínua (3-5s Infinite Loop) */
+    .callout-float-inner {
+      display: flex;
+      align-items: center;
+      animation: floatSlow 4.4s ease-in-out infinite;
+    }
+
+    .callout-layer-1 {
+      top: 10%;
+      left: -8px;
+      animation-delay: 300ms;
+    }
+
+    .callout-layer-1 .callout-float-inner {
+      animation-duration: 4.2s;
+      animation-delay: 0s;
+    }
+
+    .callout-layer-2 {
+      top: 36%;
+      right: -8px;
+      animation-delay: 420ms;
+    }
+
+    .callout-layer-2 .callout-float-inner {
+      flex-direction: row-reverse;
+      animation-duration: 4.9s;
+      animation-delay: -1.6s;
+    }
+
+    .callout-layer-3 {
+      top: 62%;
+      left: 0px;
+      animation-delay: 540ms;
+    }
+
+    .callout-layer-3 .callout-float-inner {
+      animation-duration: 3.8s;
+      animation-delay: -2.4s;
+    }
+
+    /* Card de Anotação Descolado com Blur 16px, Fundo 0.05, Borda 0.1 e Sombra Difusa */
+    .callout-pill {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: #fdfbf7;
+      border-radius: 14px;
+      padding: 0.85rem 1.2rem;
+      max-width: 245px;
+      box-shadow:
+        0 20px 40px -10px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      transition: transform 0.35s var(--ease-out-expo), background-color 0.35s ease, border-color 0.35s ease;
+    }
+
+    .layer-callout:hover .callout-pill {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 255, 255, 0.24);
+      transform: scale(1.02);
+    }
+
+    .callout-num {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #e08a47;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .callout-name {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: #fdfbf7;
+      line-height: 1.1;
+    }
+
+    .callout-note {
+      font-size: 0.78rem;
+      color: #d1d5db;
+      line-height: 1.45;
+      margin-top: 4px;
+    }
+
+    .callout-stem {
+      width: 56px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(224, 138, 71, 0.85), rgba(255, 255, 255, 0.3));
+    }
+
+    .callout-node {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #e08a47;
+      border: 2px solid #fdfbf7;
+      animation: pulseNode 3.2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .photo-caption-bar {
+      position: absolute;
+      bottom: -6px;
+      right: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-16);
+      padding: 0.45rem 1.15rem;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+      font-size: 0.78rem;
+      color: #d1d5db;
+      white-space: nowrap;
+      z-index: 6;
+      opacity: 0;
+      animation: fadeUpStagger 0.9s var(--ease-out-expo) 650ms forwards;
+    }
+
+    .photo-caption-bar span:first-child {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.02rem;
+      color: #fdfbf7;
+    }
+
+    /* ==========================================================================
+       SEÇÃO DE PILARES SENSORIAIS (Grid Arquitetônico com Divisórias de 1px)
+       ========================================================================== */
+    .pillars-section {
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .pillar-cell {
+      padding: clamp(1.75rem, 2.8vh, 2.4rem) clamp(1.2rem, 2vw, 2rem);
+      border-right: 1px solid var(--border-hairline);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.6rem, 1.2vh, 0.9rem);
+      transition: var(--transition-smooth);
+    }
+
+    .pillar-cell:first-child {
+      padding-left: 0;
+    }
+
+    .pillar-cell:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .pillar-index {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--accent-caramel);
+    }
+
+    .pillar-cell h3 {
+      font-size: clamp(1.75rem, 2.5vw, 2.15rem);
+      line-height: 1.12;
+    }
+
+    .pillar-cell p {
+      font-size: 0.9375rem;
+      color: var(--ink-secondary);
+    }
+
+    /* ==========================================================================
+       SEÇÃO: MENU ASSINADO PELO BARISTA (Abas Interativas & Split Sensorial)
+       ========================================================================== */
+    .menu-editorial-section {
+      padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+      background-color: var(--bg-ground);
+      border-bottom: 1px solid var(--border-hairline);
+      position: relative;
+    }
+
+    .menu-editorial-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: clamp(2rem, 3.5vw, 3rem);
+    }
+
+    .menu-editorial-header .meta-kicker {
+      margin-bottom: 0.75rem;
+    }
+
+    .menu-editorial-header .section-title {
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      margin-bottom: 0.75rem;
+      line-height: 1.1;
+    }
+
+    .menu-editorial-header .section-lead {
+      font-size: 0.95rem;
+      color: var(--ink-secondary);
+      max-width: 52ch;
+      margin: 0 auto clamp(1.75rem, 3vw, 2.5rem);
+      line-height: 1.6;
+    }
+
+    /* Navegação por Abas Interativas (Tabs Nav) */
+    .menu-tabs-nav {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      background-color: rgba(235, 227, 216, 0.55);
+      padding: 0.35rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-hairline);
+      box-shadow: inset 0 1px 3px rgba(35, 24, 21, 0.04);
+    }
+
+    .menu-tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      padding: 0.55rem 1.25rem;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+
+    .menu-tab-btn .tab-roman {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent-caramel);
+      letter-spacing: 0.05em;
+    }
+
+    .menu-tab-btn:hover {
+      color: var(--ink-primary);
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .menu-tab-btn.active {
+      background-color: var(--ink-primary);
+      color: var(--bg-ground);
+      border-color: var(--ink-primary);
+      box-shadow: 0 4px 14px rgba(35, 24, 21, 0.16);
+    }
+
+    .menu-tab-btn.active .tab-roman {
+      color: #E29A62;
+    }
+
+    /* Container dos Painéis de Conteúdo */
+    .menu-tab-panels-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .menu-tab-panel {
+      display: none;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .menu-tab-panel.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Grid do Split Sensorial */
+    .tab-split-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: clamp(2.5rem, 5vw, 4.5rem);
+      align-items: center;
+    }
+
+    /* Lado Esquerdo: Moldura Visual Fotográfica */
+    .tab-visual-col {
+      width: 100%;
+    }
+
+    .visual-photo-frame {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3.4;
+      background-color: #231815;
+      border: 1px solid var(--border-hairline);
+      box-shadow: 0 20px 45px -12px rgba(35, 24, 21, 0.12);
+    }
+
+    .visual-photo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.8s var(--ease-out-expo);
+      filter: saturate(1.06) contrast(1.02);
+    }
+
+    .visual-photo-frame:hover .visual-photo-img {
+      transform: scale(1.035);
+    }
+
+    .visual-photo-overlay {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.25rem;
+      right: 1.25rem;
+      display: flex;
+      justify-content: flex-start;
+      pointer-events: none;
+    }
+
+    .visual-caption-badge {
+      background: rgba(28, 19, 14, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fdfbf7;
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .visual-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #e08a47;
+      box-shadow: 0 0 8px #e08a47;
+    }
+
+    /* Lado Direito: Lista de Menu Editorial Aberta */
+    .tab-menu-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .category-meta-lead {
+      margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
+      padding-bottom: 0.85rem;
+      border-bottom: 2px solid var(--ink-primary);
+    }
+
+    .category-roman-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-caramel);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .category-display-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.85rem, 2.5vw, 2.35rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin: 0 0 0.5rem;
+      color: var(--ink-primary);
+    }
+
+    .category-premise {
+      font-size: 0.92rem;
+      color: var(--ink-secondary);
+      line-height: 1.6;
+      margin: 0;
+      max-width: 55ch;
+    }
+
+    /* Lista Aberta e Respirada */
+    .editorial-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(1.35rem, 2.2vh, 1.75rem);
+    }
+
+    .editorial-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      transition: transform 0.25s ease;
+    }
+
+    .editorial-item:hover {
+      transform: translateX(3px);
+    }
+
+    .item-head-line {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .item-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .item-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 1.55vw, 1.38rem);
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      color: var(--ink-primary);
+      margin: 0;
+    }
+
+    .star-subtle-badge {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9C5625;
+      background-color: #F8EFE4;
+      border: 1px solid rgba(184, 107, 53, 0.32);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+    }
+
+    .item-leader-dots {
+      flex: 1;
+      border-bottom: 1px dotted rgba(110, 88, 78, 0.32);
+      height: 1px;
+      margin: 0 4px;
+    }
+
+    .item-price {
+      font-size: clamp(1.02rem, 1.25vw, 1.12rem);
+      font-weight: 700;
+      color: var(--ink-primary);
+      white-space: nowrap;
+    }
+
+    .item-ingredients {
+      font-size: 0.88rem;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+      margin: 0;
+      max-width: 58ch;
+    }
+
+    /* Linhas de Passos para o Ritual da Casa */
+    .ritual-steps-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .ritual-step-row {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .step-num-pill {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: #FAF6F0;
+      border: 1.5px solid var(--accent-caramel);
+      color: var(--accent-caramel);
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-desc-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .step-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .step-text {
+      font-size: 0.88rem;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .editorial-quote-card {
+      background-color: rgba(243, 236, 226, 0.6);
+      border-left: 3px solid var(--accent-caramel);
+      padding: 0.85rem 1.15rem;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .editorial-quote-card p {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.4;
+      color: var(--ink-primary);
+      margin: 0 0 4px;
+    }
+
+    .quote-author {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: var(--accent-caramel);
+      font-weight: 600;
+      display: block;
+    }
+
+    /* Responsividade Mobile: Empilhamento Fluido e Scroll Vertical Nativo */
+    @media (max-width: 900px) {
+      .tab-split-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .visual-photo-frame {
+        aspect-ratio: 16 / 10;
+        max-height: 380px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .menu-tabs-nav {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding: 0.35rem 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .menu-tabs-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .menu-tab-btn {
+        flex-shrink: 0;
+        padding: 0.45rem 0.95rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* ==========================================================================
+       SEÇÃO: O ESPAÇO & ARQUITETURA (Warm Heritage Interactive Showcase)
+       ========================================================================== */
+    .space-section {
+      padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+      background-color: var(--bg-ground);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .space-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(2.5rem, 4.5vw, 4rem);
+      align-items: stretch; /* Alinhamento estrito de altura: início e fim na mesma linha de base */
+    }
+
+    /* Coluna Esquerda: Narrativa Arquitetônica & Gatilhos */
+    .space-narrative-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: clamp(1.5rem, 2.5vh, 2.25rem);
+    }
+
+    .space-header-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .space-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.95rem, 2.8vw, 2.5rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+      margin: 0.25rem 0 0.75rem;
+      text-wrap: balance;
+      max-width: 25ch;
+    }
+
+    .title-break {
+      display: inline;
+    }
+
+    .space-lead {
+      font-size: 0.9375rem;
+      color: var(--ink-secondary);
+      line-height: 1.6;
+      margin: 0;
+      max-width: 52ch;
+    }
+
+    /* Lista de Gatilhos Interativos (Warm Heritage) */
+    .space-triggers-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .space-trigger-card {
+      background: transparent;
+      border: 1px solid transparent;
+      border-left: 3px solid transparent;
+      border-radius: 16px;
+      padding: 0.95rem 1.25rem;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 100%;
+      user-select: none;
+      font-family: inherit;
+    }
+
+    .space-trigger-card:hover {
+      background-color: rgba(235, 227, 216, 0.45);
+      transform: translateX(4px);
+    }
+
+    .space-trigger-card.active {
+      background-color: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-color: rgba(184, 107, 53, 0.22);
+      border-left: 3px solid var(--accent-caramel);
+      box-shadow: 0 8px 24px -6px rgba(35, 24, 21, 0.08);
+      transform: translateX(6px);
+    }
+
+    .trigger-index-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .trigger-num {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      transition: color 0.25s ease;
+    }
+
+    .space-trigger-card.active .trigger-num {
+      color: var(--accent-caramel);
+    }
+
+    .trigger-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .trigger-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .trigger-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--ink-primary);
+      margin: 0;
+      line-height: 1.2;
+      transition: color 0.25s ease;
+    }
+
+    .space-trigger-card.active .trigger-title {
+      color: #9C5625;
+      font-weight: 500;
+    }
+
+    .trigger-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: transparent;
+      transition: all 0.25s ease;
+    }
+
+    .space-trigger-card.active .trigger-indicator {
+      background-color: var(--accent-caramel);
+      box-shadow: 0 0 8px var(--accent-caramel);
+    }
+
+    .trigger-desc {
+      font-size: 0.86rem;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Coluna Direita: Showcase Visual Interativo */
+    .space-showcase-col {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .space-showcase-frame {
+      flex: 1;
+      min-height: 490px;
+      position: relative;
+      border-radius: 24px; /* rounded-2xl */
+      overflow: hidden;
+      border: 1px solid var(--border-hairline);
+      box-shadow: 0 20px 48px -12px rgba(35, 24, 21, 0.14);
+      background-color: #231815;
+    }
+
+    .space-photo-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.035);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.5s;
+      pointer-events: none;
+    }
+
+    .space-photo-slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .space-slide-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(1.08) contrast(1.02);
+    }
+
+    .space-slide-overlay {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.25rem;
+      right: 1.25rem;
+      display: flex;
+      justify-content: flex-start;
+      pointer-events: none;
+    }
+
+    .space-caption-badge {
+      background: rgba(28, 19, 14, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #fdfbf7;
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+    }
+
+    .caption-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #E29A62;
+      box-shadow: 0 0 8px #E29A62;
+    }
+
+    .space-progress-dots {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      display: flex;
+      gap: 6px;
+      background: rgba(28, 19, 14, 0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 5px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+    }
+
+    .space-progress-dots .progress-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .space-progress-dots .progress-dot.active {
+      background-color: #E29A62;
+      width: 16px;
+      border-radius: 4px;
+    }
+
+    /* ==========================================================================
+       SEÇÃO DISCRETA: CADERNO DO BARISTA (Contraste Editorial Escuro)
+       ========================================================================== */
+    .notebook-section {
+      background-color: var(--bg-espresso-dark);
+      color: var(--bg-ground);
+      padding: clamp(2.5rem, 4vw, 3.5rem) 0;
+    }
+
+    .notebook-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-light-on-dark);
+      margin-bottom: clamp(1.25rem, 2vh, 2rem);
+    }
+
+    .notebook-header h2 {
+      color: var(--bg-ground);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+    }
+
+    .notebook-header p {
+      color: rgba(250, 246, 240, 0.72);
+      font-size: 0.9375rem;
+    }
+
+    .notebook-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(1.25rem, 2.5vw, 2.25rem);
+    }
+
+    .metric-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+      padding-right: var(--space-24);
+      border-right: 1px solid var(--border-light-on-dark);
+    }
+
+    .metric-block:last-child {
+      border-right: none;
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(250, 246, 240, 0.78);
+      font-weight: 600;
+    }
+
+    .metric-val {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 2.8vw, 2.25rem);
+      color: var(--bg-ground);
+      line-height: 1.1;
+    }
+
+    .metric-sub {
+      font-size: 0.85rem;
+      color: var(--accent-caramel);
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       RODAPÉ ESTRUTURADO: HORÁRIOS & LOCALIZAÇÃO
+       ========================================================================== */
+    .site-footer {
+      background-color: var(--bg-surface);
+      padding: clamp(2.5rem, 4vw, 3.5rem) 0 1.5rem;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr 0.9fr;
+      gap: clamp(1.5rem, 3vw, 2.5rem);
+      padding-bottom: clamp(2rem, 3.5vw, 3rem);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .footer-brand .brand-logo-img {
+      height: 60px;
+    }
+
+    .live-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-8);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      background-color: var(--bg-ground);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-pill);
+      color: var(--ink-primary);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #2E7D32;
+    }
+
+    .footer-col h4 {
+      font-size: 1.5rem;
+      font-style: italic;
+      margin-bottom: var(--space-24);
+    }
+
+    .hours-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+    }
+
+    .hours-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      padding-bottom: var(--space-8);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .hours-item span:last-child {
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .address-details {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-16);
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom {
+      padding-top: var(--space-32);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-16);
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+    }
+
+    /* ==========================================================================
+       RESPONSIVIDADE MOBILE-FIRST AVANÇADA (Zero Overflow, Touch Targets >= 44px)
+       ========================================================================== */
+
+    /* Padding lateral proporcional em celulares */
+    @media (max-width: 640px) {
+      .container {
+        padding-left: 1rem;  /* px-4 */
+        padding-right: 1rem; /* px-4 */
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .container {
+        padding-left: 1.5rem;  /* px-6 */
+        padding-right: 1.5rem; /* px-6 */
+      }
+    }
+
+    /* Tablet & Telas Intermediárias (<= 1024px) */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .space-layout {
+        grid-template-columns: 1fr;
+        gap: 2.25rem;
+      }
+
+      .space-showcase-frame {
+        aspect-ratio: 16 / 10;
+        min-height: 320px;
+        max-height: 440px;
+      }
+
+      .title-break {
+        display: none;
+      }
+
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pillar-cell {
+        border-right: none;
+        border-bottom: 1px solid var(--border-hairline);
+        padding: 1.75rem 0;
+      }
+
+      .notebook-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .metric-block {
+        border-right: none;
+        border-bottom: 1px solid var(--border-light-on-dark);
+        padding-bottom: 1.25rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .brand-meta {
+        display: none;
+      }
+    }
+
+    /* Celular & Telas Menores (<= 768px) */
+    @media (max-width: 768px) {
+      /* Header & Navegação Mobile: Oculta links de texto e exibe logo + menu sanduíche */
+      .desktop-nav,
+      .header-cta-desktop,
+      .brand-meta {
+        display: none !important;
+      }
+
+      .mobile-nav-toggle {
+        display: inline-flex;
+      }
+
+      .mobile-nav-drawer {
+        display: block;
+      }
+
+      .header-inner {
+        height: 68px;
+      }
+
+      .brand-logo-img {
+        height: 36px;
+      }
+
+      /* Hero Section: Foto após o título com leitura natural */
+      .hero-section {
+        min-height: auto;
+        padding: 2.25rem 0 3.5rem;
+      }
+
+      .hero-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 7.8vw, 2.75rem);
+        line-height: 1.1;
+        letter-spacing: -0.025em;
+        margin-bottom: 0.85rem;
+      }
+
+      /* Exibe a moldura fotográfica real do Café Bombom logo após o título no mobile */
+      .hero-mobile-visual {
+        display: block;
+        width: 100%;
+        margin: 1.15rem 0 1.35rem;
+      }
+
+      .hero-mobile-frame {
+        position: relative;
+        border-radius: 20px; /* rounded-2xl */
+        overflow: hidden;
+        aspect-ratio: 16 / 10;
+        max-height: 290px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
+        background-color: #231815;
+      }
+
+      .hero-mobile-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .hero-mobile-badge {
+        position: absolute;
+        bottom: 0.85rem;
+        left: 0.85rem;
+        right: 0.85rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(28, 19, 14, 0.82);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: #fdfbf7;
+        padding: 0.42rem 0.85rem;
+        border-radius: var(--radius-pill);
+        font-size: 0.75rem;
+        font-weight: 500;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero-mobile-badge .badge-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #e08a47;
+        box-shadow: 0 0 8px #e08a47;
+        flex-shrink: 0;
+      }
+
+      /* Oculta os pins absolutos de desktop para eliminar overflow e ruído no mobile */
+      .hero-visual-wrapper {
+        display: none !important;
+      }
+
+      .hero-lead {
+        font-size: 0.98rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+      }
+
+      .hero-cta-group .btn {
+        width: 100%;
+        min-height: 48px;
+        justify-content: center;
+      }
+
+      .hero-sensory-footnote {
+        grid-template-columns: 1fr;
+        gap: 1.15rem;
+        margin-top: 1.75rem;
+        padding-top: 1.25rem;
+      }
+
+      /* Seção Pilares */
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pillar-cell {
+        padding: 1.35rem 0;
+      }
+
+      .pillar-cell:first-child {
+        padding-top: 1.75rem;
+      }
+
+      .pillar-cell:last-child {
+        border-bottom: none;
+        padding-bottom: 1.75rem;
+      }
+
+      .pillar-cell h3 {
+        font-size: clamp(1.4rem, 5.2vw, 1.75rem);
+      }
+
+      /* Seção Menu: Abas em scroll horizontal tátil com touch target >= 44px */
+      .menu-editorial-section {
+        padding: 3.5rem 0;
+      }
+
+      .menu-editorial-header {
+        margin-bottom: 1.75rem;
+      }
+
+      .menu-editorial-header .section-title {
+        font-size: clamp(1.75rem, 6.5vw, 2.2rem);
+      }
+
+      .menu-editorial-header .section-lead {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .menu-tabs-nav {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 4px;
+        gap: 6px;
+        justify-content: flex-start;
+        border-radius: var(--radius-pill);
+      }
+
+      .menu-tabs-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .menu-tab-btn {
+        flex-shrink: 0;
+        min-height: 44px;
+        padding: 0.55rem 1.1rem;
+        font-size: 0.82rem;
+      }
+
+      .tab-split-grid {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+      }
+
+      .visual-photo-frame {
+        aspect-ratio: 16 / 10;
+        max-height: 270px;
+        border-radius: 18px;
+      }
+
+      .category-display-title {
+        font-size: clamp(1.45rem, 5.2vw, 1.85rem);
+      }
+
+      .editorial-items-list {
+        gap: 1.35rem;
+      }
+
+      /* Seção Salão / Espaço: Reorganização com leitura natural (texto -> foto -> gatilhos) */
+      .space-section {
+        padding: 3.5rem 0;
+      }
+
+      .space-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+      }
+
+      .space-narrative-col {
+        display: contents;
+      }
+
+      .space-header-block {
+        order: 1;
+      }
+
+      .space-title {
+        font-size: clamp(1.75rem, 6.5vw, 2.2rem);
+        line-height: 1.15;
+        max-width: 100%;
+      }
+
+      /* Foto posicionada estrategicamente logo após a introdução */
+      .space-showcase-col {
+        order: 2;
+        width: 100%;
+      }
+
+      .space-showcase-frame {
+        aspect-ratio: 16 / 10;
+        min-height: 240px;
+        max-height: 310px;
+        border-radius: 18px;
+      }
+
+      /* Gatilhos interativos acessíveis logo abaixo da foto */
+      .space-triggers-list {
+        order: 3;
+        width: 100%;
+        gap: 0.5rem;
+      }
+
+      .space-trigger-card {
+        padding: 0.85rem 1rem;
+        border-radius: 14px;
+        min-height: 48px;
+      }
+
+      .space-trigger-card.active {
+        transform: none;
+      }
+
+      /* Seção Caderno do Barista */
+      .notebook-section {
+        padding: 3rem 0;
+      }
+
+      .notebook-header h2 {
+        font-size: clamp(1.75rem, 6.5vw, 2.2rem);
+      }
+
+      .notebook-metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .metric-block {
+        border-right: none;
+        border-bottom: 1px solid var(--border-light-on-dark);
+        padding-bottom: 1.25rem;
+      }
+
+      .metric-block:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      /* Rodapé */
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2.25rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding-top: 1.75rem;
+      }
+    }
+
+    /* Telas Ultra-Pequenas (<= 480px) */
+    @media (max-width: 480px) {
+      .item-head-line {
+        flex-wrap: wrap;
+        gap: 0.25rem 0.5rem;
+      }
+
+      .item-leader-dots {
+        display: none;
+      }
+
+      .item-price {
+        margin-left: auto;
+      }
+
+      .space-caption-badge,
+      .visual-caption-badge,
+      .hero-mobile-badge {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.75rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .menu-tab-panel,
+      .space-photo-slide {
+        transition: none;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Textura sutil de Papel Artesanal / Linho -->
+  <svg class="linen-grain" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+    <filter id="linen-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.04 0" />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#linen-noise)" />
+  </svg>
+
+  <!-- ========================================================================
+       HEADER INTEGRADO AO TOPO IMERSIVO (Blur Translúcido + Logo Destacada)
+       ======================================================================== -->
+  <header class="site-header" id="topo">
+    <div class="container header-inner">
+      <a href="#topo" class="brand-logo-wrap" title="Espresso Cafeteria Artesanal">
+        <img src="assets/logo.png" alt="Logo Espresso" class="brand-logo-img">
+        <div class="brand-meta">
+          <span class="brand-tagline">Casa de Café & Forno</span>
+          <span class="brand-sub">Torra Artesanal</span>
+        </div>
+      </a>
+
+      <!-- Navegação Desktop -->
+      <nav aria-label="Navegação Principal" class="desktop-nav">
+        <ul class="nav-links">
+          <li><a href="#experiencia">O Café Bombom</a></li>
+          <li><a href="#cardapio">Cardápio</a></li>
+          <li><a href="#espaco">Nosso Salão</a></li>
+          <li><a href="#caderno">Caderno do Barista</a></li>
+          <li><a href="#horarios">Visite-nos</a></li>
+        </ul>
+      </nav>
+
+      <!-- Ações do Header (Desktop CTA + Mobile Hamburger) -->
+      <div class="header-actions">
+        <a href="#horarios" class="btn btn-primary header-cta-desktop">Reservar Mesa</a>
+        
+        <!-- Botão Menu Sanduíche Mobile (Touch target >= 44px) -->
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobileNavDrawer" onclick="toggleMobileNav()">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Drawer / Gaveta de Navegação Mobile -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <div class="container mobile-drawer-inner">
+        <ul class="mobile-nav-list">
+          <li><a href="#experiencia" class="mobile-nav-item" onclick="toggleMobileNav(false)">O Café Bombom</a></li>
+          <li><a href="#cardapio" class="mobile-nav-item" onclick="toggleMobileNav(false)">Cardápio do Barista</a></li>
+          <li><a href="#espaco" class="mobile-nav-item" onclick="toggleMobileNav(false)">Nosso Salão & Ambiência</a></li>
+          <li><a href="#caderno" class="mobile-nav-item" onclick="toggleMobileNav(false)">Caderno Técnico</a></li>
+          <li><a href="#horarios" class="mobile-nav-item" onclick="toggleMobileNav(false)">Horários & Localização</a></li>
+        </ul>
+        <div class="mobile-drawer-cta">
+          <a href="#horarios" class="btn btn-primary btn-block" onclick="toggleMobileNav(false)">Reservar Mesa no Balcão</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         HERO IMERSIVO & FULL-BLEED COVER (Protagonismo Fotográfico & Âmbar)
+         ====================================================================== -->
+    <section class="hero-section" id="experiencia">
+      <!-- Imagem Full-Bleed Cobrindo o Hero com Gradiente Expresso Profundo (#1c130e) -->
+      <div class="hero-fullbleed-bg" aria-hidden="true">
+        <img 
+          src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=1920&q=85" 
+          alt="Taça de vidro transparente exibindo as três camadas contrastantes do Café Bombom sob luz dourada"
+          fetchpriority="high"
+          decoding="async"
+        >
+      </div>
+      <div class="hero-fullbleed-overlay" aria-hidden="true"></div>
+
+      <div class="container hero-grid">
+        
+        <!-- Coluna Esquerda: Entrada em Cascata (Staggered Fade-in 100ms) + Whitespace Refinado -->
+        <div class="hero-copy">
+          <span class="meta-kicker stagger-item stagger-1">Manhãs de sol, pão quente & café recém-moído</span>
+
+          <h1 class="hero-title stagger-item stagger-2">
+            O encontro aveludado entre o espresso quente e a <em>doçura calma</em>.
+          </h1>
+
+          <!-- Foto em Destaque Mobile: Exibida logo após o título em telas de celular (Leitura Natural) -->
+          <div class="hero-mobile-visual" aria-hidden="true">
+            <div class="hero-mobile-frame">
+              <img 
+                src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=900&q=85" 
+                alt="Café Bombom Tradicional com três camadas visíveis em taça de cristal"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              >
+              <div class="hero-mobile-badge">
+                <span class="badge-dot"></span>
+                <span>Café Bombom da Casa • Taça de Cristal 130ml</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="hero-lead stagger-item stagger-3">
+            Entre sem pressa. Nossa casa nasceu ao redor do clássico <strong>Café Bombom</strong>: servido em taça de vidro transparente para que você aprecie a dança entre o leite condensado cozido no tacho, o espresso encorpado e a crema dourada polvilhada com cumaru.
+          </p>
+
+          <div class="hero-cta-group stagger-item stagger-4">
+            <a href="#cardapio" class="btn btn-primary">Explorar a Carta de Bebidas</a>
+            <a href="#espaco" class="btn btn-secondary">Conhecer o Casarão</a>
+          </div>
+
+          <div class="hero-sensory-footnote stagger-item stagger-5">
+            <div class="footnote-item">
+              <span class="footnote-title">Fornadas Diárias</span>
+              <span class="footnote-desc tabular-nums">Brioches e folhados saem quentes do forno às 08h30 e às 16h00.</span>
+            </div>
+            <div class="footnote-item">
+              <span class="footnote-title">Ambiente de Refúgio</span>
+              <span class="footnote-desc">Salão banhado por luz solar natural com jardim interno e discos de vinil.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coluna Direita: Camadas Descoladas (Blur 16px, Sombra Difusa & Flutuação Contínua) -->
+        <div class="hero-visual-wrapper">
+          <div class="hero-annotations-stage">
+            
+            <!-- Pin 01: Topo -->
+            <div class="layer-callout callout-layer-1">
+              <div class="callout-float-inner">
+                <div class="callout-pill">
+                  <span class="callout-num tabular-nums">01 • Camada Superior</span>
+                  <div class="callout-name">Crema Dourada & Cumaru</div>
+                  <div class="callout-note">Espuma sedosa com aroma de baunilha nativa</div>
+                </div>
+                <div class="callout-stem"></div>
+                <div class="callout-node"></div>
+              </div>
+            </div>
+
+            <!-- Pin 02: Meio -->
+            <div class="layer-callout callout-layer-2">
+              <div class="callout-float-inner">
+                <div class="callout-pill">
+                  <span class="callout-num tabular-nums">02 • Coração Quente</span>
+                  <div class="callout-name">Espresso Duplo Encorpado</div>
+                  <div class="callout-note">Torra fresca com notas de cacau e avelã</div>
+                </div>
+                <div class="callout-stem"></div>
+                <div class="callout-node"></div>
+              </div>
+            </div>
+
+            <!-- Pin 03: Base -->
+            <div class="layer-callout callout-layer-3">
+              <div class="callout-float-inner">
+                <div class="callout-pill">
+                  <span class="callout-num tabular-nums">03 • Base Cremosa</span>
+                  <div class="callout-name">Leite Condensado de Tacho</div>
+                  <div class="callout-note">Reduzido lentamente até o ponto de marfim</div>
+                </div>
+                <div class="callout-stem"></div>
+                <div class="callout-node"></div>
+              </div>
+            </div>
+
+            <div class="photo-caption-bar">
+              <span>Café Bombom da Casa</span>
+              <span class="tabular-nums">Taça de Cristal • 130ml</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TRIO ARQUITETÔNICO DE EXPERIÊNCIA (Divisórias de 1px)
+         ====================================================================== -->
+    <section class="pillars-section">
+      <div class="container pillars-grid">
+        <article class="pillar-cell">
+          <span class="pillar-index tabular-nums">01 / DOÇURA DE FAZENDA</span>
+          <h3>Ingredientes que contam história</h3>
+          <p>Nosso leite condensado e nosso doce de leite são preparados artesanalmente em pequenos tachos de cobre com leite fresco da Serra da Mantiqueira.</p>
+        </article>
+        <article class="pillar-cell">
+          <span class="pillar-index tabular-nums">02 / AROMA NO AR</span>
+          <h3>Torra fresca toda semana</h3>
+          <p>Torramos nossos grãos às terças e sextas pela manhã. O perfume de caramelo e castanhas toma conta da calçada antes mesmo da primeira xícara.</p>
+        </article>
+        <article class="pillar-cell">
+          <span class="pillar-index tabular-nums">03 / TEMPO DESACELERADO</span>
+          <h3>Hospitalidade de sala de estar</h3>
+          <p>Mesas de madeira maciça banhadas pelo sol, louças de cerâmica torneadas à mão e um convite aberto para demorar o quanto quiser.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         MENU DE BEBIDAS ASSINADO PELO BARISTA (Tabular Nums)
+         ====================================================================== -->
+    <!-- ======================================================================
+         MENU ASSINADO PELO BARISTA (Abas Interativas & Split Sensorial)
+         ====================================================================== -->
+    <section class="menu-editorial-section" id="cardapio">
+      <div class="container">
+        
+        <!-- Cabeçalho Editorial com Abas Interativas -->
+        <header class="menu-editorial-header">
+          <span class="meta-kicker">Carta da Temporada • Experiência de Mesa</span>
+          <h2 class="section-title">Menu Assinado pelo Barista</h2>
+          <p class="section-lead">Receitas autorais e métodos artesanais servidos em louças de cerâmica aquecida e taças de cristal.</p>
+          
+          <nav class="menu-tabs-nav" role="tablist" aria-label="Categorias do Cardápio">
+            <button class="menu-tab-btn active" role="tab" aria-selected="true" aria-controls="tab-assinatura" id="tab-btn-assinatura" onclick="switchMenuTab('tab-assinatura')">
+              <span class="tab-roman">I</span> Assinatura
+            </button>
+            <button class="menu-tab-btn" role="tab" aria-selected="false" aria-controls="tab-espressos" id="tab-btn-espressos" onclick="switchMenuTab('tab-espressos')">
+              <span class="tab-roman">II</span> Espressos
+            </button>
+            <button class="menu-tab-btn" role="tab" aria-selected="false" aria-controls="tab-coados" id="tab-btn-coados" onclick="switchMenuTab('tab-coados')">
+              <span class="tab-roman">III</span> Coados na Mesa
+            </button>
+            <button class="menu-tab-btn" role="tab" aria-selected="false" aria-controls="tab-confeitaria" id="tab-btn-confeitaria" onclick="switchMenuTab('tab-confeitaria')">
+              <span class="tab-roman">IV</span> Forno & Confeitaria
+            </button>
+            <button class="menu-tab-btn" role="tab" aria-selected="false" aria-controls="tab-ritual" id="tab-btn-ritual" onclick="switchMenuTab('tab-ritual')">
+              <span class="tab-roman">V</span> Ritual da Casa
+            </button>
+          </nav>
+        </header>
+
+        <!-- Conteúdo das Abas (Split Sensorial: Foto Esquerda + Menu Editorial Direita) -->
+        <div class="menu-tab-panels-wrap">
+
+          <!-- ABA I: ASSINATURA -->
+          <div class="menu-tab-panel active" id="tab-assinatura" role="tabpanel" aria-labelledby="tab-btn-assinatura">
+            <div class="tab-split-grid">
+              
+              <!-- Coluna Esquerda: Destaque Visual com Foto Real do Café Bombom -->
+              <div class="tab-visual-col">
+                <div class="visual-photo-frame">
+                  <img class="visual-photo-img" 
+                       src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=1000&q=85" 
+                       alt="Café Bombom da Casa com camadas visíveis de leite condensado, espresso e crema" 
+                       loading="lazy">
+                  <div class="visual-photo-overlay">
+                    <div class="visual-caption-badge">
+                      <span class="visual-badge-dot"></span>
+                      <span>Café Bombom Tradicional • Taça de Cristal 130ml</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Coluna Direita: Lista Editorial Aberta & Limpa -->
+              <div class="tab-menu-col">
+                <div class="category-meta-lead">
+                  <span class="category-roman-tag">I • Assinatura da Casa</span>
+                  <h3 class="category-display-title">Camadas & Autorais</h3>
+                  <p class="category-premise">Nossas criações mais célebres unem o rigor do café especial à cremosidade artesanal de tachos de fazenda.</p>
+                </div>
+
+                <div class="editorial-items-list">
+                  <!-- Item Flagship com badge sutil -->
+                  <div class="editorial-item">
+                    <div class="item-head-line">
+                      <div class="item-title-group">
+                        <h4 class="item-name">Café Bombom Tradicional</h4>
+                        <span class="star-subtle-badge">Ícone da Casa</span>
+                      </div>
+                      <div class="item-leader-dots"></div>
+                      <span class="item-price tabular-nums">R$ 22,00</span>
+                    </div>
+                    <p class="item-ingredients">Camada generosa de leite condensado artesanal de tacho, espresso duplo encorpado e espuma aveludada com fava de cumaru ralada na hora.</p>
+                  </div>
+
+                  <div class="editorial-item">
+                    <div class="item-head-line">
+                      <div class="item-title-group">
+                        <h4 class="item-name">Bombom de Doce de Leite & Flor de Sal</h4>
+                      </div>
+                      <div class="item-leader-dots"></div>
+                      <span class="item-price tabular-nums">R$ 24,00</span>
+                    </div>
+                    <p class="item-ingredients">Doce de leite mineiro na base da taça, ristretto duplo quente e creme batido finalizado com cristais crocantes de flor de sal.</p>
+                  </div>
+
+                  <div class="editorial-item">
+                    <div class="item-head-line">
+                      <div class="item-title-group">
+                        <h4 class="item-name">Mocha de Cacau 70% & Laranja</h4>
+                      </div>
+                      <div class="item-leader-dots"></div>
+                      <span class="item-price tabular-nums">R$ 25,00</span>
+                    </div>
+                    <p class="item-ingredients">Ganache derretida de cacau amazônico puro, espresso quente, leite vaporizado e perfume fresco de raspas de laranja Bahia.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ABA II: ESPRESSOS -->
+          <div class="menu-tab-panel" id="tab-espressos" role="tabpanel" aria-labelledby="tab-btn-espressos">
+            <div class="tab-split-grid">
+              
+              <!-- Coluna Esquerda: Destaque Visual com Foto Real do Espresso -->
+              <div class="tab-visual-col">
+                <div class="visual-photo-frame">
+                  <img class="visual-photo-img" 
+                       src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1000&q=85" 
+                       alt="Xícara de cerâmica com espresso duplo da casa e crema dourada aveludada" 
+                       loading="lazy">
+                  <div class="visual-photo-overlay">
+                    <div class="visual-caption-badge">
+                      <span class="visual-badge-dot"></span>
+                      <span>Espresso Duplo • Cerâmica Torneada 60ml</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Coluna Direita: Lista Editorial -->
+              <div class="tab-menu-col">
+                <div class="category-meta-lead">
+                  <span class="category-roman-tag">II • Método Espresso</span>
+                  <h3 class="category-display-title">Espressos & Leite</h3>
+                  <p class="category-premise">Extrações sob 9 bar de pressão que exaltam a doçura natural e o corpo sedoso do nosso blend exclusivo.</p>
+                </div>
+
+                <div class="editorial-items-list">
+                  <div class="editorial-item">
+                    <div class="item-head-line">
+                      <div class="item-title-group">
+                        <h4 class="item-name">Espresso Duplo da Casa</h4>
+                        <span class="star-subtle-badge">Blend Exclusivo</span>
+                      </div>
+                      <div class="item-leader-dots"></div>
+                      <span class="item-price tabular-nums">R$ 13,00</span>
+                    </div>
+                    <p class="item-ingredients">Doce e aveludado, com crema espessa cor de avelã. Notas aromáticas de chocolate ao leite, amêndoas e rapadura.</p>
+                  </div>
+
+                  <div class="editorial-item">
+                    <div class="item-head-line">
+                      <div class="item-title-group">
+                        <h4 class="item-name">Capuccino Artesanal com Cacau</h4>
+                      </div>
+                      <div class="item-leader-dots"></div>
+                      <span class="item-price tabular-nums">R$ 19,00</span>
+                    </div>
+                    <p class="item-ingredients">Espresso duplo, leite vaporizado com textura sedosa e polvilhado generoso de cacau puro com canela fresca do Ceilão.</p>
+                  </div>
+
+                  <div class="editorial-item">
+                    <div class="item-head-line">
+                      <div class="item-title-group">
+                        <h4 class="item-name">Cortado no Copo de Vidro</h4>
+                      </div>
+                      <div class="item-leader-dots"></div>
+                      <span class="item-price tabular-nums">R$ 16,00</span>
+                    </div>
+                    <p class="item-ingredients">Proporção precisa de 1:1 entre espresso duplo e leite morno sedoso, destacando as notas tostadas e o equilíbrio do grão.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ABA III: COADOS NA MESA -->
+          <div class="menu-tab-panel" id="tab-coados" role="tabpanel" aria-labelledby="tab-btn-coados">
+            <div class="tab-split-grid">
+              
+              <!-- Coluna Esquerda: Destaque Visual com Foto Real do Coado Hario V60 -->
+              <div class="tab-visual-col">
+                <div class="visual-photo-frame">
+                  <img class="visual-photo-img" 
+                       src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=85" 
+                       alt="Café filtrado artesanal servido em jarra de vidro com xícara fumegante" 
+                       loading="lazy">
+                  <div class="visual-photo-overlay">
+                    <div class="visual-caption-badge">
+                      <span class="visual-badge-dot"></span>
+                      <span>Hario V60 • Jarra de Vidro Soprado 250ml</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Coluna Direita: Lista Editorial -->
+              <div class="tab-menu-col">
+                <div class="category-meta-lead">
+                  <span class="category-roman-tag">III • Extração Lenta</span>
+                  <h3 class="category-display-title">Coados na Mesa</h3>
+                  <p class="category-premise">Métodos manuais que valorizam a clareza, a doçura e as notas florais dos melhores microlotes da Mantiqueira.</p>
+                </div>
+
+                <div class="editorial-items-list">
+                  <div class="editorial-item">
+                    <div class="item-head-line">
+                      <div class="item-title-group">
+                        <h4 class="item-name">Hario V60 • Colheita das Flores</h4>
+                        <span class="star-subtle-badge">Microlote Premiado</span>
+                      </div>
+                      <div class="item-leader-dots"></div>
+                      <span class="item-price tabular-nums">R$ 19,00</span>
+                    </div>
+                    <p class="item-ingredients">Bebida límpida, delicada e aromática com notas sensoriais de chá de pêssego, mel de flor de laranjeira e garapa fresca.</p>
+                  </div>
+
+                  <div class="editorial-item">
+                    <div class="item-head-line">
+                      <div class="item-title-group">
+                        <h4 class="item-name">Prensa Francesa para Dois</h4>
+                      </div>
+                      <div class="item-leader-dots"></div>
+                      <span class="item-price tabular-nums">R$ 28,00</span>
+                    </div>
+                    <p class="item-ingredients">Infusão encorpada que preserva integralmente os óleos naturais do café. Servida em jarra generosa para compartilhar à mesa.</p>
+                  </div>
+
+                  <div class="editorial-item">
+                    <div class="item-head-line">
+                      <div class="item-title-group">
+                        <h4 class="item-name">Coador de Pano da Fazenda</h4>
+                      </div>
+                      <div class="item-leader-dots"></div>
+                      <span class="item-price tabular-nums">R$ 17,00</span>
+                    </div>
+                    <p class="item-ingredients">Preparado individualmente em suporte de madeira rústica, resgatando a memória afetiva de casa de avó com doçura envolvente.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ABA IV: FORNO & CONFEITARIA -->
+          <div class="menu-tab-panel" id="tab-confeitaria" role="tabpanel" aria-labelledby="tab-btn-confeitaria">
+            <div class="tab-split-grid">
+              
+              <!-- Coluna Esquerda: Destaque Visual com Foto Real de Confeitaria -->
+              <div class="tab-visual-col">
+                <div class="visual-photo-frame">
+                  <img class="visual-photo-img" 
+                       src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1000&q=85" 
+                       alt="Pães artesanais e tortas de forno com crosta dourada e manteiga" 
+                       loading="lazy">
+                  <div class="visual-photo-overlay">
+                    <div class="visual-caption-badge">
+                      <span class="visual-badge-dot"></span>
+                      <span>Fornadas do Dia • Produção Diária Artesanal</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Coluna Direita: Lista Editorial -->
+              <div class="tab-menu-col">
+                <div class="category-meta-lead">
+                  <span class="category-roman-tag">IV • Forno & Cozinha</span>
+                  <h3 class="category-display-title">Pães & Confeitaria</h3>
+                  <p class="category-premise">Massas folhadas na manteiga, queijos artesanais de pequenos produtores e doces de tacho feitos diariamente.</p>
+                </div>
+
+                <div class="editorial-items-list">
+                  <div class="editorial-item">
+                    <div class="item-head-line">
+                      <div class="item-title-group">
+                        <h4 class="item-name">Torta Rústica de Maçã & Caramelo</h4>
+                        <span class="star-subtle-badge">Quentinha do Forno</span>
+                      </div>
+                      <div class="item-leader-dots"></div>
+                      <span class="item-price tabular-nums">R$ 21,00</span>
+                    </div>
+                    <p class="item-ingredients">Massa folhada amanteigada crocante, fatias finas de maçã com canela e fio generoso de caramelo artesanal morno com flor de sal.</p>
+                  </div>
+
+                  <div class="editorial-item">
+                    <div class="item-head-line">
+                      <div class="item-title-group">
+                        <h4 class="item-name">Brioche Tostado com Queijo da Canastra</h4>
+                      </div>
+                      <div class="item-leader-dots"></div>
+                      <span class="item-price tabular-nums">R$ 23,00</span>
+                    </div>
+                    <p class="item-ingredients">Fatia alta de brioche de fermentação natural dourada na manteiga da casa, queijo meia-cura derretido e fio de mel nativo.</p>
+                  </div>
+
+                  <div class="editorial-item">
+                    <div class="item-head-line">
+                      <div class="item-title-group">
+                        <h4 class="item-name">Bolo de Fubá Cremoso com Goiabada</h4>
+                      </div>
+                      <div class="item-leader-dots"></div>
+                      <span class="item-price tabular-nums">R$ 16,00</span>
+                    </div>
+                    <p class="item-ingredients">Fubá moído em moinho d'água, toque suave de queijo curado, sementes de erva-doce e pedaços derretidos de goiabada cascão.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ABA V: RITUAL DO BARISTA -->
+          <div class="menu-tab-panel" id="tab-ritual" role="tabpanel" aria-labelledby="tab-btn-ritual">
+            <div class="tab-split-grid">
+              
+              <!-- Coluna Esquerda: Destaque Visual do Barista / Degustação -->
+              <div class="tab-visual-col">
+                <div class="visual-photo-frame">
+                  <img class="visual-photo-img" 
+                       src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1000&q=85" 
+                       alt="Barista realizando a extração com foco e precisão artesanal" 
+                       loading="lazy">
+                  <div class="visual-photo-overlay">
+                    <div class="visual-caption-badge">
+                      <span class="visual-badge-dot"></span>
+                      <span>Ritual de Mesa • Degustação em Três Tempos</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Coluna Direita: Guia de Degustação Editorial -->
+              <div class="tab-menu-col">
+                <div class="category-meta-lead">
+                  <span class="category-roman-tag">V • Ritual da Casa</span>
+                  <h3 class="category-display-title">Como Degustar o Bombom</h3>
+                  <p class="category-premise">Uma experiência sensorial desenhada para revelar progressivamente as camadas térmicas e texturas da taça.</p>
+                </div>
+
+                <div class="ritual-steps-flow">
+                  <div class="ritual-step-row">
+                    <div class="step-num-pill tabular-nums">1</div>
+                    <div class="step-desc-wrap">
+                      <h5 class="step-title">O Encontro Frio & Quente</h5>
+                      <p class="step-text">Dê o primeiro gole sem mexer a taça. Sinta a crema fria e o perfume de cumaru abrirem caminho para o espresso quente.</p>
+                    </div>
+                  </div>
+
+                  <div class="ritual-step-row">
+                    <div class="step-num-pill tabular-nums">2</div>
+                    <div class="step-desc-wrap">
+                      <h5 class="step-title">A Colher de Marfim</h5>
+                      <p class="step-text">Mergulhe a colherinha até a base da taça e envolva lentamente o leite condensado artesanal de tacho no café.</p>
+                    </div>
+                  </div>
+
+                  <div class="ritual-step-row">
+                    <div class="step-num-pill tabular-nums">3</div>
+                    <div class="step-desc-wrap">
+                      <h5 class="step-title">Sobremesa Líquida</h5>
+                      <p class="step-text">Aprecie o equilíbrio aveludado onde o amargor do cacau encontra o caramelo em ponto de seda.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="editorial-quote-card" style="margin-bottom: 1.5rem;">
+                  <p>“Um café que pede pausa, colher e boa companhia.”</p>
+                  <span class="quote-author">— Gabriel Antunes, Mestre de Torra</span>
+                </div>
+
+                <div>
+                  <a href="#horarios" class="btn btn-primary" style="display: inline-block;">
+                    Reservar Mesa no Balcão
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SEÇÃO: O ESPAÇO (Warm Heritage Interactive Showcase)
+         ====================================================================== -->
+    <section class="space-section" id="espaco">
+      <div class="container space-layout">
+        
+        <!-- Coluna Esquerda: Narrativa Arquitetônica & Gatilhos Interativos -->
+        <div class="space-narrative-col">
+          <div class="space-header-block">
+            <span class="meta-kicker">Casarão Histórico de 1924</span>
+            <h2 class="section-title space-title">
+              Janelas altas, luz dourada<br class="title-break"> e cheiro de café pelo ar.
+            </h2>
+            <p class="space-lead">
+              Nosso salão ocupa uma antiga residência restaurada com paredes de tijolo aparente, madeira de peroba e um quintal arborizado. Projetamos cada canto para acolher conversas tranquilas, leituras de fim de tarde e encontros sem relógio.
+            </p>
+          </div>
+
+          <!-- Gatilhos Interativos dos Ambientes (Warm Heritage) -->
+          <div class="space-triggers-list" role="tablist" aria-label="Ambientes do Casarão">
+            
+            <button class="space-trigger-card active" 
+                    role="tab" 
+                    aria-selected="true" 
+                    aria-controls="space-panel-0" 
+                    id="space-trigger-0"
+                    onmouseenter="activateSpace(0)" 
+                    onclick="activateSpace(0)">
+              <div class="trigger-index-wrap">
+                <span class="trigger-num tabular-nums">01</span>
+              </div>
+              <div class="trigger-body">
+                <div class="trigger-head">
+                  <h4 class="trigger-title">Jardim de Inverno</h4>
+                  <span class="trigger-indicator"></span>
+                </div>
+                <p class="trigger-desc">Mesas sob a sombra de plantas tropicais com iluminação solar suave durante todo o dia.</p>
+              </div>
+            </button>
+
+            <button class="space-trigger-card" 
+                    role="tab" 
+                    aria-selected="false" 
+                    aria-controls="space-panel-1" 
+                    id="space-trigger-1"
+                    onmouseenter="activateSpace(1)" 
+                    onclick="activateSpace(1)">
+              <div class="trigger-index-wrap">
+                <span class="trigger-num tabular-nums">02</span>
+              </div>
+              <div class="trigger-body">
+                <div class="trigger-head">
+                  <h4 class="trigger-title">Balcão de Degustação</h4>
+                  <span class="trigger-indicator"></span>
+                </div>
+                <p class="trigger-desc">Sente-se próximo aos baristas para sentir o aroma da moagem fresca e escolher seu grão.</p>
+              </div>
+            </button>
+
+            <button class="space-trigger-card" 
+                    role="tab" 
+                    aria-selected="false" 
+                    aria-controls="space-panel-2" 
+                    id="space-trigger-2"
+                    onmouseenter="activateSpace(2)" 
+                    onclick="activateSpace(2)">
+              <div class="trigger-index-wrap">
+                <span class="trigger-num tabular-nums">03</span>
+              </div>
+              <div class="trigger-body">
+                <div class="trigger-head">
+                  <h4 class="trigger-title">Cerâmica de Ateliê</h4>
+                  <span class="trigger-indicator"></span>
+                </div>
+                <p class="trigger-desc">Xícaras e pratos torneados manualmente por ceramistas locais para conservar o calor.</p>
+              </div>
+            </button>
+
+            <button class="space-trigger-card" 
+                    role="tab" 
+                    aria-selected="false" 
+                    aria-controls="space-panel-3" 
+                    id="space-trigger-3"
+                    onmouseenter="activateSpace(3)" 
+                    onclick="activateSpace(3)">
+              <div class="trigger-index-wrap">
+                <span class="trigger-num tabular-nums">04</span>
+              </div>
+              <div class="trigger-body">
+                <div class="trigger-head">
+                  <h4 class="trigger-title">Empório em Grãos</h4>
+                  <span class="trigger-indicator"></span>
+                </div>
+                <p class="trigger-desc">Leve nossos cafés em pacotes de 250g, moídos na hora para o método que você usa em casa.</p>
+              </div>
+            </button>
+
+          </div>
+        </div>
+
+        <!-- Coluna Direita: Showcase Visual Interativo com Transição Suave (rounded-2xl) -->
+        <div class="space-showcase-col">
+          <div class="space-showcase-frame">
+            
+            <!-- Painel 01: Jardim de Inverno -->
+            <div class="space-photo-slide active" id="space-panel-0" role="tabpanel" aria-labelledby="space-trigger-0">
+              <img class="space-slide-img" 
+                   src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=1200&q=85" 
+                   alt="Salão com mesas de madeira e plantas sob luz natural que entra pelas janelas altas" 
+                   loading="lazy">
+              <div class="space-slide-overlay">
+                <div class="space-caption-badge">
+                  <span class="caption-dot"></span>
+                  <span>Jardim de Inverno • Mesas sob luz solar filtrada e plantas tropicais</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Painel 02: Balcão de Degustação -->
+            <div class="space-photo-slide" id="space-panel-1" role="tabpanel" aria-labelledby="space-trigger-1">
+              <img class="space-slide-img" 
+                   src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1200&q=85" 
+                   alt="Balcão de madeira onde o barista prepara cafés especiais em métodos manuais" 
+                   loading="lazy">
+              <div class="space-slide-overlay">
+                <div class="space-caption-badge">
+                  <span class="caption-dot"></span>
+                  <span>Balcão de Degustação • Proximidade com o barista e extrações ao vivo</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Painel 03: Cerâmica de Ateliê -->
+            <div class="space-photo-slide" id="space-panel-2" role="tabpanel" aria-labelledby="space-trigger-2">
+              <img class="space-slide-img" 
+                   src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=85" 
+                   alt="Xícara artesanal de cerâmica rústica com café quente sobre a mesa" 
+                   loading="lazy">
+              <div class="space-slide-overlay">
+                <div class="space-caption-badge">
+                  <span class="caption-dot"></span>
+                  <span>Cerâmica de Ateliê • Peças torneadas à mão para reter a temperatura</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Painel 04: Empório em Grãos -->
+            <div class="space-photo-slide" id="space-panel-3" role="tabpanel" aria-labelledby="space-trigger-3">
+              <img class="space-slide-img" 
+                   src="https://images.unsplash.com/photo-1587734195503-904fca47e0e9?auto=format&fit=crop&w=1200&q=85" 
+                   alt="Pacotes de grãos de café especial recém-torrados dispostos na prateleira" 
+                   loading="lazy">
+              <div class="space-slide-overlay">
+                <div class="space-caption-badge">
+                  <span class="caption-dot"></span>
+                  <span>Empório da Casa • Grãos selecionados em pacotes de 250g moídos na hora</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Micro-indicador de Paginação/Slide no Canto Superior Direito -->
+            <div class="space-progress-dots" aria-hidden="true">
+              <span class="progress-dot active" data-index="0"></span>
+              <span class="progress-dot" data-index="1"></span>
+              <span class="progress-dot" data-index="2"></span>
+              <span class="progress-dot" data-index="3"></span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SEÇÃO DISCRETA: CADERNO DO BARISTA (Contraste Editorial Espresso)
+         ====================================================================== -->
+    <section class="notebook-section" id="caderno">
+      <div class="container">
+        <div class="notebook-header">
+          <div>
+            <span class="meta-kicker" style="margin-bottom: 12px;">Notas de Bancada & Lote da Semana</span>
+            <h2>Caderno do Barista</h2>
+          </div>
+          <p>Para quem aprecia espiar os parâmetros técnicos por trás da nossa xícara desta semana.</p>
+        </div>
+
+        <div class="notebook-metrics-grid">
+          <div class="metric-block">
+            <span class="metric-label">Fazenda & Origem</span>
+            <span class="metric-val">Sítio Vista Alegre</span>
+            <span class="metric-sub tabular-nums">Mantiqueira de Minas • 1.280m</span>
+          </div>
+          <div class="metric-block">
+            <span class="metric-label">Variedade & Torra</span>
+            <span class="metric-val">Catuaí Amarelo</span>
+            <span class="metric-sub tabular-nums">Torra Média • Lote Nº 48</span>
+          </div>
+          <div class="metric-block">
+            <span class="metric-label">Receita do Espresso</span>
+            <span class="metric-val tabular-nums">18.5g → 37ml</span>
+            <span class="metric-sub tabular-nums">Extração em 27s a 92°C</span>
+          </div>
+          <div class="metric-block">
+            <span class="metric-label">Perfil Sensorial</span>
+            <span class="metric-val">Caramelo & Avelã</span>
+            <span class="metric-sub tabular-nums">Avaliação SCA 88.5 pts</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       RODAPÉ COM HORÁRIOS TABULARES E LOCALIZAÇÃO
+       ======================================================================== -->
+  <footer class="site-footer" id="horarios">
+    <div class="container">
+      
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#topo" class="brand-logo-wrap">
+            <img src="assets/logo_dark.png" alt="Logo Espresso" class="brand-logo-img" style="height: 44px;">
+          </a>
+          <p>
+            Cafeteria artesanal dedicada ao prazer das receitas em camadas, grãos de pequenos produtores brasileiros e hospitalidade acolhedora.
+          </p>
+          <div class="live-status-badge">
+            <span class="status-dot"></span>
+            <span><strong>Salão Aberto Hoje</strong> • Esperamos você até às 20h</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Horários da Casa</h4>
+          <div class="hours-list">
+            <div class="hours-item">
+              <span>Terça a Sexta-feira</span>
+              <span class="tabular-nums">08:00 — 20:00</span>
+            </div>
+            <div class="hours-item">
+              <span>Sábados</span>
+              <span class="tabular-nums">09:00 — 21:00</span>
+            </div>
+            <div class="hours-item">
+              <span>Domingos e Feriados</span>
+              <span class="tabular-nums">09:00 — 18:30</span>
+            </div>
+            <div class="hours-item" style="color: var(--ink-muted);">
+              <span>Segundas-feiras</span>
+              <span style="font-weight: 400; color: var(--ink-muted);">Torra Interna (Fechado)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Endereço & Contato</h4>
+          <div class="address-details">
+            <p>
+              <strong style="color: var(--ink-primary);">Rua das Palmeiras, 142</strong><br>
+              Vila Buarque / Santa Cecília — São Paulo, SP
+            </p>
+            <p>
+              A 5 minutos de caminhada arborizada da Estação Santa Cecília. Bicicletário na entrada e jardim pet-friendly.
+            </p>
+            <p>
+              <strong style="color: var(--ink-primary);">Reservas & Encomendas:</strong><br>
+              <span class="tabular-nums" style="color: var(--accent-caramel); font-weight: 600;">+55 (11) 3482-9012</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Espresso — Cafeteria Artesanal & Confeitaria de Forno.</div>
+        <div>Direção de Arte: Editorial Split & Warm Architectural Grid</div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Script de Navegação Interativa (Abas do Cardápio & Ambientes do Salão) -->
+  <script>
+    /* ==========================================================================
+       ABAS INTERATIVAS DO CARDÁPIO
+       ========================================================================== */
+    function switchMenuTab(targetId) {
+      const tabs = document.querySelectorAll('.menu-tab-btn');
+      const panels = document.querySelectorAll('.menu-tab-panel');
+
+      tabs.forEach(btn => {
+        const isMatch = btn.getAttribute('aria-controls') === targetId;
+        btn.classList.toggle('active', isMatch);
+        btn.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+      });
+
+      panels.forEach(panel => {
+        const isMatch = panel.id === targetId;
+        panel.classList.toggle('active', isMatch);
+      });
+    }
+
+    /* ==========================================================================
+       GATILHOS INTERATIVOS DO CASARÃO / SALÃO (Warm Heritage Showcase)
+       ========================================================================== */
+    function activateSpace(index) {
+      const triggers = document.querySelectorAll('.space-trigger-card');
+      const slides = document.querySelectorAll('.space-photo-slide');
+      const dots = document.querySelectorAll('.space-progress-dots .progress-dot');
+
+      triggers.forEach((trigger, i) => {
+        const isTarget = (i === index);
+        trigger.classList.toggle('active', isTarget);
+        trigger.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+      });
+
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+
+    // Suporte à navegação por teclado (Acessibilidade WAI-ARIA)
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Teclado para Abas do Cardápio
+      const tabList = document.querySelector('.menu-tabs-nav');
+      if (tabList) {
+        const tabs = Array.from(tabList.querySelectorAll('.menu-tab-btn'));
+        tabList.addEventListener('keydown', (e) => {
+          const currentActive = document.activeElement;
+          const currentIndex = tabs.indexOf(currentActive);
+          if (currentIndex === -1) return;
+
+          let nextIndex = null;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            nextIndex = (currentIndex + 1) % tabs.length;
+          } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+          }
+
+          if (nextIndex !== null) {
+            const nextTab = tabs[nextIndex];
+            nextTab.focus();
+            const targetId = nextTab.getAttribute('aria-controls');
+            if (targetId) switchMenuTab(targetId);
+          }
+        });
+      }
+
+      // 2. Teclado para Gatilhos do Salão
+      const spaceList = document.querySelector('.space-triggers-list');
+      if (spaceList) {
+        const triggers = Array.from(spaceList.querySelectorAll('.space-trigger-card'));
+        spaceList.addEventListener('keydown', (e) => {
+          const currentActive = document.activeElement;
+          const currentIndex = triggers.indexOf(currentActive);
+          if (currentIndex === -1) return;
+
+          let nextIndex = null;
+          if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+            e.preventDefault();
+            nextIndex = (currentIndex + 1) % triggers.length;
+          } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            nextIndex = (currentIndex - 1 + triggers.length) % triggers.length;
+          }
+
+          if (nextIndex !== null) {
+            triggers[nextIndex].focus();
+            activateSpace(nextIndex);
+          }
+        });
+      }
+    });
+
+    /* ==========================================================================
+       MENU MOBILE (Gaveta / Drawer & Toggle)
+       ========================================================================== */
+    function toggleMobileNav(forceState) {
+      const toggleBtn = document.getElementById('mobileNavToggle');
+      const drawer = document.getElementById('mobileNavDrawer');
+      if (!toggleBtn || !drawer) return;
+
+      const isOpen = typeof forceState === 'boolean' 
+        ? forceState 
+        : !drawer.classList.contains('is-open');
+
+      toggleBtn.classList.toggle('is-open', isOpen);
+      toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      drawer.classList.toggle('is-open', isOpen);
+      drawer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    }
+
+    // Fechar ao clicar fora ou pressionar ESC
+    document.addEventListener('click', (e) => {
+      const header = document.querySelector('.site-header');
+      const drawer = document.getElementById('mobileNavDrawer');
+      if (drawer && drawer.classList.contains('is-open') && header && !header.contains(e.target)) {
+        toggleMobileNav(false);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        toggleMobileNav(false);
+      }
+    });
+
+    window.switchMenuTab = switchMenuTab;
+    window.activateSpace = activateSpace;
+    window.toggleMobileNav = toggleMobileNav;
+  </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+.vercel
+*.backup.html
+*.prod.html
+test_*.html
+.DS_Store
+Thumbs.db
