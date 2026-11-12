@@ -1,11 +1,9 @@
 /**
- * PC & Mobile UX Suite Plugin v1.0
+ * PC & Mobile UX Suite Plugin v2.0 (High-Refresh 120Hz Scroll Optimized)
  * Inclui:
- * 1. Lenis Smooth Scroll Integration
- * 2. Vanilla-Tilt 3D Cards & Glare (Desktop)
- * 3. Smart Scroll-Aware Bottom Bar (Evita colisão com botões do Hero no Mobile)
- * 4. Touch Swipe Physics (Arrastar para o lado no Cardápio e Galeria do Salão)
- * 5. Scroll Reveal Suave
+ * 1. Lenis Smooth Scroll Integration (100% contínuo no Desktop, sem interrupção em seções)
+ * 2. Smart Scroll-Aware Bottom Bar (Restrito ao Mobile para zero reflow no Desktop)
+ * 3. Touch Swipe Physics (Arrastar para o lado no Cardápio e Galeria do Salão)
  */
 (function (window, document) {
   'use strict';
@@ -17,34 +15,27 @@
 
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
-    // Configuração do Lenis com interpolação pura (lerp) sem duração fixa conflitante
-    // Evita conflitos e solavancos ao inverter bruscamente a direção da roda do mouse
     const lenis = new window.Lenis({
-      lerp: isMobile ? 0.12 : 0.085,
+      lerp: isMobile ? 0.12 : 0.105,
       smoothWheel: true,
-      syncTouch: isMobile,
-      syncTouchLerp: 0.12,
+      syncTouch: false,
       touchMultiplier: 1.0,
       wheelMultiplier: 1.0,
-      prevent: (node) => Boolean(
-        node && node.closest && (
-          node.closest('.pillars-grid') || 
-          node.closest('.pillars-section') || 
-          node.closest('.menu-tabs-bar') || 
-          node.closest('.menu-tabs-nav') || 
-          node.closest('.menu-tabs-sticky-wrap') || 
-          node.closest('.menu-tab-panels-wrap') || 
-          node.closest('.space-photo-viewport') || 
+      autoRaf: true,
+      prevent: (node) => {
+        if (!node || !node.closest) return false;
+        // No Desktop, nenhuma seção vertical deve interromper o Lenis no wheel do mouse
+        if (!isMobile) {
+          return Boolean(node.closest('.mobile-nav-drawer'));
+        }
+        // No Mobile, apenas carrosséis horizontais explícitos e a gaveta usam scroll nativo isolado
+        return Boolean(
+          node.closest('.pillars-grid') ||
+          node.closest('.menu-tabs-nav') ||
           node.closest('.mobile-nav-drawer')
-        )
-      )
+        );
+      }
     });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
 
     // Conecta links de âncora (#cardapio, #espaco, etc.) ao Lenis
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -62,24 +53,11 @@
     window.__lenis = lenis;
   }
 
-  function init3DTilt() {
-    if (typeof window.VanillaTilt === 'undefined') return;
-    // Aplica 3D Tilt apenas em dispositivos com mouse fino (PC/Desktop)
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
-    const tiltTargets = document.querySelectorAll('.callout-pill, .visual-photo-frame, .notebook-card');
-    if (tiltTargets.length > 0) {
-      window.VanillaTilt.init(Array.from(tiltTargets), {
-        max: 4,
-        speed: 450,
-        glare: true,
-        'max-glare': 0.14,
-        scale: 1.01
-      });
-    }
-  }
-
   function initSmartMobileBar() {
+    // Executa apenas em telas mobile (evita chamadas getBoundingClientRect no scroll do Desktop)
+    const mqMobile = window.matchMedia('(max-width: 768px)');
+    if (!mqMobile.matches) return;
+
     const mobileBar = document.querySelector('.mobile-liquid-bar');
     const heroSection = document.querySelector('.hero-section');
     const footerSection = document.querySelector('.site-footer');
@@ -181,47 +159,10 @@
     }
   }
 
-  function initScrollReveal() {
-    if (!('IntersectionObserver' in window)) return;
-    // Anima apenas blocos verticais da página; nunca elementos de carrosséis horizontais (para não flutuarem durante o swipe no mobile)
-    const revealEls = document.querySelectorAll('.editorial-item, .notebook-card, .space-trigger-card');
-    revealEls.forEach((el) => {
-      el.style.transition = 'opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)';
-    });
-
-    const observer = new window.IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          // Limpa inline styles após conclusão para liberar camadas da GPU e evitar engasgos em reversões rápidas de scroll
-          setTimeout(() => {
-            if (entry.target) {
-              entry.target.style.transition = '';
-              entry.target.style.transform = '';
-            }
-          }, 600);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    revealEls.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top > window.innerHeight) {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(14px)';
-        observer.observe(el);
-      }
-    });
-  }
-
   function boot() {
     initSmoothScroll();
-    init3DTilt();
     initSmartMobileBar();
     initTouchSwipePhysics();
-    initScrollReveal();
   }
 
   if (document.readyState === 'loading') {

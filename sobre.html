@@ -88,10 +88,12 @@
       top: 0;
       z-index: 100;
       background: rgba(24, 16, 12, 0.85);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
       border-bottom: 1px solid rgba(255, 255, 255, 0.14);
       box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.55);
+      transform: translateZ(0);
+      will-change: transform;
     }
 
     .header-inner {
@@ -1225,7 +1227,7 @@
   </script>
 
   <!-- Plugins Locais (Lenis Smooth Scroll & Mobile Touch Physics) -->
-  <script src="assets/plugins/lenis.min.js?v=8" defer></script>
-  <script src="assets/plugins/mobile-ux-suite.js?v=8" defer></script>
+  <script src="assets/plugins/lenis.min.js?v=9" defer></script>
+  <script src="assets/plugins/mobile-ux-suite.js?v=9" defer></script>
 </body>
 </html>
