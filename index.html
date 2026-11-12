@@ -189,7 +189,7 @@
       align-items: center;
       justify-content: space-between;
       height: var(--header-h);
-      gap: clamp(1rem, 2.5vw, 2.5rem);
+      gap: clamp(1rem, 2vw, 1.75rem);
     }
 
     .brand-logo-wrap {
@@ -238,6 +238,10 @@
       color: #e08a47;
       font-weight: 600;
       margin-top: 2px;
+    }
+
+    .desktop-nav {
+      margin-left: auto;
     }
 
     .nav-links {
@@ -2416,7 +2420,6 @@
         <ul class="nav-links">
           <li><a href="#cardapio">Cardápio</a></li>
           <li><a href="sobre.html">Sobre Nós</a></li>
-          <li><a href="#experiencia">O Café Bombom</a></li>
         </ul>
       </nav>
 
@@ -2439,7 +2442,6 @@
         <ul class="mobile-nav-list">
           <li><a href="#cardapio" class="mobile-nav-item" onclick="toggleMobileNav(false)">Cardápio da Casa</a></li>
           <li><a href="sobre.html" class="mobile-nav-item" onclick="toggleMobileNav(false)">Sobre Nós (O Casarão & História) →</a></li>
-          <li><a href="#experiencia" class="mobile-nav-item" onclick="toggleMobileNav(false)">O Café Bombom</a></li>
         </ul>
         <div class="mobile-drawer-cta">
           <a href="#horarios" class="btn btn-primary btn-block" onclick="toggleMobileNav(false)">Horários & Como Chegar</a>
